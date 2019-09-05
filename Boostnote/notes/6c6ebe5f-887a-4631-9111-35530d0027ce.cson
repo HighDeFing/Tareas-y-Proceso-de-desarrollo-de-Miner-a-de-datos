@@ -1,0 +1,116 @@
+createdAt: "2019-09-05T19:06:19.835Z"
+updatedAt: "2019-09-05T22:30:44.920Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"Getting and Cleaning Data\""
+tags: []
+content: '''
+  ---
+  title: "Getting and Cleaning Data"
+  author: "heider"
+  date: "30/7/2019"
+  output: html_document
+  ---
+  
+  # Getting and Cleaning Data
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+  - [Manipulating Data with dplyr](#Manipulating-Data-with-dplyr)
+      + [read](#read)
+      + [dim](#dim)
+      + [head and tail](#head-and-tail)
+      + [library(dplyr)](#librarydplyr)
+        - [packageVersion("dplyr")](#packageVersiondplyr)
+      + [tbl_df](#tbl_df)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  
+  Obtencion y limpieza de los datos es la segunda fase en el proceso de mineria de datos, una vez hallamos planteados los objetivos, el siguiente paso es obtener los datos.
+  
+  Los datos no siempre vendran en csv (comma separated values) y una vez tengamos las columnas y las filas estos tienen que pasar por un proceso de saber cuales son los datos (filas y columnas) que nos interesan, es un pequeño paso del preprocesamiento.
+  
+  
+  ## Manipulating Data with dplyr
+  
+  Sobre dplyr, povee una gramatica flexible para la manipulacion de data. Es la proxima iteracion de plyr, centrada en herramientas para trabajar con data frames.
+  
+  #### read
+  
+  ```R
+  read.csv(file, header = TRUE, sep = ",", quote = "/"", dec = ".", fill = TRUE, comment.char = "", ...)
+  ```
+  
+  Lee un archivo en formato de tabla y crea un data frame desde el, con los casos correspondientes a filas y las variables a columnas del archivo.
+  
+  `stringAsFactors` = `FALSE` por default R tiene esta opcion como `TRUE` en el turorial se indica colocarla como falsa, la razon es que en este caso, no queremos que nuestros strings pasen a ser factores (representacions basicamente numericas), si no strings.
+  
+  #### dim
+  
+  ```R
+  dim(x)
+  dim(x) <- value
+  ```
+  
+  
+  Devuelve o fija las dimesiones de un objeto.
+  
+  #### head and tail
+  
+  Returns the first or last parts of a vector, matrix, table, data frame or function. Since head() and tail() are generic functions, they may also have been extended to other classes.
+  
+  Regresa las primeras y ultimas partes de un vector, matriz, tabla, data frame o funcion. Como `head()` y `tail()` son funciones genericas, pueden estas extendidas en otras clases.
+  
+  ```R
+  head(x, …)
+  # S3 method for default
+  head(x, n = 6L, …)
+  # S3 method for data.frame
+  
+  tail(x, …)
+  # S3 method for default
+  tail(x, n = 6L, …)
+  # S3 method for data.frame
+  ```
+  
+  #### library(dplyr)
+  
+  Se utiliza para cargar el paquete de la libreria donde estan las funciones de `dplyr` normalmente esto lo tenemos que hacer de forma manual.
+  
+  ##### packageVersion("dplyr")
+  
+  Para saber la version, se recomienda tener 0.4.0 o posterior.
+  
+  #### tbl_df
+  
+  Crea un data frame en forma de tibbles, los tibbles son tablas mas compactas y una de las mayores ventajas que tiene es la forma en que se ve en consola.
+  
+  ```R
+  tbl_df(data)
+  ```
+  
+  tbl_df es la version de dyplr para crear tibbles pero ya se encuentra descontinuada, es su lugar se otra funcion que se puede encontrar en `library(tidyverse)`
+  
+  ```R
+  library(tidyverse)
+  
+  as_tibble(x, ...)
+  
+  df <- as_tibble(x)
+  ```
+  
+  
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
