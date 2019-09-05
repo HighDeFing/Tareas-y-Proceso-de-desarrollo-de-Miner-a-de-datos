@@ -1,5 +1,5 @@
 createdAt: "2019-09-05T19:06:19.835Z"
-updatedAt: "2019-09-05T22:30:44.920Z"
+updatedAt: "2019-09-05T23:33:20.810Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
 title: "\"Getting and Cleaning Data\""
@@ -25,6 +25,7 @@ content: '''
       + [library(dplyr)](#librarydplyr)
         - [packageVersion("dplyr")](#packageVersiondplyr)
       + [tbl_df](#tbl_df)
+      + [select](#select)
   
   <!-- tocstop -->
   
@@ -103,9 +104,18 @@ content: '''
   df <- as_tibble(x)
   ```
   
+  #### select
   
+  Muestra solo las variables (columnas) que mencionamos.
   
+  ```R
+  select(.data, ...)
+  ```
   
+  `.data` bebe ser un tibble.
+  `...` Mas expresionas sin comillas y separadas por comas. Tambien se pueden usar variables como si fueran posiciones, es decir, 5:20 (5 hasta 20)
+  
+  Si ponemos las variables con `-`, tambien podemos selecionar variables que no queremos, lo mismo puede ser aplicado como si fueran posiciones, es decir -(5:20) (-5 hasta -20)
   
   
   
