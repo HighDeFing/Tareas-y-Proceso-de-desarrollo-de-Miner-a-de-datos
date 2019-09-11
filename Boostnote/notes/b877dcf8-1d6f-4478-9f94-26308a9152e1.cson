@@ -1,0 +1,97 @@
+createdAt: "2019-09-11T17:53:13.795Z"
+updatedAt: "2019-09-11T23:08:08.835Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"Grouping and Chaining with dplyr\""
+tags: []
+content: '''
+  ---
+  title: "Grouping and Chaining with dplyr"
+  author: "heider"
+  date: "30/7/2019"
+  output: html_document
+  ---
+  
+  # Grouping and Chaining with dplyr
+  
+  **Contenidos**
+  
+  <!-- toc -->
+  
+  - [Grouping and Chaining with dplyr](#Grouping-and-Chaining-with-dplyr)
+      + [group_by](#group_by)
+      + [quantile](#quantile)
+      + [View](#View)
+      + [chaining](#chaining)
+  
+  <!-- tocstop -->
+  
+  ## Grouping and Chaining with dplyr
+  
+  #### group_by
+  
+  La mayoria de las operaciones sobre la data se hacen en grupos definidos por variables. `grop_by()` toma un tbl y lo convierte en un tbl con grupos donde las operaciones se realizas "por grupos". `ungroup()` remueve los grupos.
+  
+  ```R
+  group_by(.data, ..., add = FALSE, .drop = FALSE)
+  
+  ungroup(x, ...)
+  ```
+  
+  `.data` bebe ser un tibble.
+  `...` Variables para agrupar.
+  `add` Cuando `add = FALSE`, por defecto, `group_by()` sobrescribira grupos existentes, para añadir los grupos anteriores, usar `add = TRUE`
+  `.drop` Cuando `.drop = TRUE` los grupos vacios seran eliminados.
+  `x` debe ser un tibble.
+  
+  Despues de aplicar `group_by()` nuestro tibble se vera mas o menos igual solo que mostrara `Groups` al pricipio, indicando que ahora las operaciones que hagamos se haran por grupos.
+  
+  Aqui es cuando `summarize()` toma mayor valor ya que nos permite imprimir nuevos tibbles desde operaciones que hagamos dentro de summarize y la tibbles con grupos.
+  
+  #### quantile
+  
+  Es una funcion que produce cuantiles correspondiente a probabilidades dadas. La observacion mas pequeña corresponde a la probabilidad de 0 y la mas larga a la probabilidad de 1.
+  
+  ```R
+  quantile(x, ...)
+  
+  ## Default S3 method:
+  quantile(x, probs = seq(0, 1, 0.25), na.rm = FALSE, names = TRUE, type = 7, ...)
+  ```
+  
+  `x` vector numero de donde los cuantiles son queridos
+  `probs` vector numerico de probablidades con valores en [0,1]
+  `na.rm` si cierto, todos los NA o NaN son eliminados de x antes de sacar los cuantiles.
+  `names` si cierto, el resultado tiene el atributo names.
+  `type` un entero entre 1 y 9 para saber cual algoritmo de cuatiles se utilizara.
+  `...` argumentos de otros metodos.
+  
+  Regresa un vector con los cuantiles si el atributo names es verdad entonces muestra el nombre del cuantil encima.
+  
+  Esto es util para separar la data si queremos el top 1% o valores entre 30% o 70%.
+  
+  #### View
+  
+  Para mostrar la data como una hoja de calculo, de un objeto de tipo matriz en R
+  
+  ```R
+  View(x, title)
+  ```
+  
+  `x` Un objecto en R que puede ser un data frame no vacio.
+  `title` si queremos que la ventana tenga titulo, si no, tomara el titulo de objeto `x`.
+  
+  #### chaining
+  
+  chaining o encadenar es una manera de hacer nuestro codigo mas leible sin necesidad de guardar variables intermedias. Utiliza el operador `%>%`
+  
+  ```R
+  iris %>% head()
+  # is equivalent to using:
+  head(iris)
+  ```
+  Es preferible porque podemos leer funciones de izquierda a derecha en vez de adentro hacia afuera.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,18 +1,18 @@
 createdAt: "2019-09-05T19:06:19.835Z"
-updatedAt: "2019-09-05T23:33:20.810Z"
+updatedAt: "2019-09-11T18:29:53.634Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
-title: "\"Getting and Cleaning Data\""
+title: "\"Manipulating Data with dplyr\""
 tags: []
 content: '''
   ---
-  title: "Getting and Cleaning Data"
+  title: "Manipulating Data with dplyr"
   author: "heider"
   date: "30/7/2019"
   output: html_document
   ---
   
-  # Getting and Cleaning Data
+  # Manipulating Data with dplyr
   
   **Contenidos**
   <!-- toc -->
@@ -25,7 +25,12 @@ content: '''
       + [library(dplyr)](#librarydplyr)
         - [packageVersion("dplyr")](#packageVersiondplyr)
       + [tbl_df](#tbl_df)
+    * [Los 5 verbos pricipales](#Los-5-verbos-pricipales)
       + [select](#select)
+      + [filter](#filter)
+      + [arrange](#arrange)
+      + [mutate](#mutate)
+      + [summarize](#summarize)
   
   <!-- tocstop -->
   
@@ -104,9 +109,10 @@ content: '''
   df <- as_tibble(x)
   ```
   
+  ### Los 5 verbos pricipales 
   #### select
   
-  Muestra solo las variables (columnas) que mencionamos.
+  Muestra solo las variables (columnas) que pasamos como argumentos.
   
   ```R
   select(.data, ...)
@@ -116,6 +122,78 @@ content: '''
   `...` Mas expresionas sin comillas y separadas por comas. Tambien se pueden usar variables como si fueran posiciones, es decir, 5:20 (5 hasta 20)
   
   Si ponemos las variables con `-`, tambien podemos selecionar variables que no queremos, lo mismo puede ser aplicado como si fueran posiciones, es decir -(5:20) (-5 hasta -20)
+  
+  #### filter
+  
+  Usa filter para encontrar filas/casos donde las condiciones sean verdad. Las filas que tengan `NA` seran eliminadas.
+  
+  ```R
+  filter(.data,...)
+  filter(cran, package == "swirl")
+  ```
+  
+  `.data` bebe ser un tibble.
+  `...` Expresiones logicas definidas en terminos de las variables/columnas en `.data`, varias condiciones AND separadas por comas `,` y condiciones OR con `|`
+  
+  Las condiciones pasadas en filter pueden ser cualquiera de los operadores de comparacion estandar.
+  
+  `is.na()` devuelve si el valor es NA (missing) tambien util cuando utilizamos filter.
+  
+  #### arrange
+  
+  Ordena las filas por variables o columnas, trabaja de manera similar a `filter()`, solo que en vez de filtrar o seleccionar filas, las ordena de forma ascendete por defecto. Si propocionas mas de una variable, cada columna adicional es usada para romper empates entre filas de la precedente columna.
+  
+  ```R
+  arrange(.data, ...)
+  arrange(cran2, ip_id)
+  ```
+  `.data` bebe ser un tibble.
+  `...` variables sin comillas que queremos ordenar.
+  
+  Para ordenar de forma decendente utilizar `desc()`
+  ```R
+  arrange(flights, desc(arr_delay))
+  ```
+  
+  #### mutate
+  
+  Agrega nuevas variables en funcion de variables existentes, sin eliminar variables existentes.
+  
+  ```R
+  mutate(.data, ...)
+  mutate(cran3, size_mb = size / 2^20)
+  ```
+  
+  `.data` bebe ser un tibble.
+  `...` nombre y expresiones u operaciones que queramos operar en todas las filas de una variable.
+  
+  Podemos referenciar columnas que hayamos creado.
+  
+  ```R
+  mutate(cran3, size_mb = size / 2^20, size_gb = size_mb / 2^10)
+  ```
+  
+  Si solo queremos dejar las variables que creamos usamos `transmute()`
+  
+  #### summarize
+  
+  Crea una o mas variables escalares que resumen en una sola fila, alguna variable. Es usada normalmente cuando ocurre un `group_by()` donde se crean mas filas por grupo.
+  
+  ```R
+  summarise(.data, ...)
+  
+  summarize(.data, ...)
+  
+  summarize(cran, avg_bytes = mean(size))
+  ```
+  
+  `.data` bebe ser un tibble.
+  `...` nombre y valor pares las funciones que resumen. El nombre sera el nombre de la columna y el valor pueden ser expresiones como `mean(x)`, `n()`, `sum(is.na(y))`.
+  
+  
+  
+  
+  
   
   
   
