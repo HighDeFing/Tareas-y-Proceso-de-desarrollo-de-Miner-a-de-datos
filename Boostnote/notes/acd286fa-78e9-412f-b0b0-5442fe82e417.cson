@@ -1,0 +1,595 @@
+createdAt: "2019-09-09T17:15:27.334Z"
+updatedAt: "2019-09-11T03:46:09.618Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"Exploratory Data Analysis P1\""
+tags: []
+content: '''
+  ---
+  title: "Exploratory Data Analysis P1"
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  
+  # Getting and Cleaning Data
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+      + [Principles of Analytic Graphs](#Principles-of-Analytic-Graphs)
+    * [Exploratory Graphs](#Exploratory-Graphs)
+      + [Head](#Head)
+      + [Dim](#Dim)
+      + [Table](#Table)
+      + [summary](#summary)
+      + [quantile](#quantile)
+      + [Boxplot](#Boxplot)
+      + [Abline](#Abline)
+      + [Hist](#Hist)
+      + [Rug](#Rug)
+      + [Names](#Names)
+      + [Barplot](#Barplot)
+      + [Par](#Par)
+      + [Subset](#Subset)
+      + [scatterplot ( función plot)](#scatterplot--función-plot)
+        - [with](#with)
+    * [Graphics Devices in R](#Graphics-Devices-in-R)
+      + [title](#title)
+      + [dev](#dev)
+      + [Formatos para exportar](#Formatos-para-exportar)
+        - [PDF](#PDF)
+        - [SVG](#SVG)
+        - [Win.metafile](#Winmetafile)
+        - [Postscript](#Postscript)
+        - [PNG](#PNG)
+        - [JPEG](#JPEG)
+        - [TIFF](#TIFF)
+        - [BMP](#BMP)
+    * [Plotting Systems](#Plotting-Systems)
+      + [Base Plotting System](#Base-Plotting-System)
+        - [Text](#Text)
+        - [Range](#Range)
+        - [Length](#Length)
+        - [Points](#Points)
+        - [Legend](#Legend)
+        - [Mtext](#Mtext)
+      + [Lattice Plotting System](#Lattice-Plotting-System)
+        - [xyplot](#xyplot)
+        - [Source](#Source)
+        - [path to File](#path-to-File)
+        - [myedit](#myedit)
+        - [Str](#Str)
+      + [ggplot2](#ggplot2)
+        - [qplot](#qplot)
+      + [Color](#Color)
+        - [Colors](#Colors)
+        - [heat.colors](#heatcolors)
+        - [topo.colors](#topocolors)
+        - [Sample](#Sample)
+        - [ColorRamp](#ColorRamp)
+        - [Pal](#Pal)
+        - [Seq](#Seq)
+        - [colorRampPalette](#colorRampPalette)
+        - [brewer.pal](#brewerpal)
+        - [Image](#Image)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  Para extraer y analizar los datos para poder procesarlos de forma correcta, se pueden utilizar tecnicas de visualizacion que permitan entenderlos de forma mas sencilla que el visualizar el conjunto de datos como texto.
+  
+  El etiquetarlo, generar graficos con colores y comparativos nos ayudan en esta tarea del Analisis exploratorio de los datos.
+  
+  #### Principles of Analytic Graphs
+  
+  Principios basicos para presentar los datos de manera efectiva mostrando los resultados de forma significativa, los principios son .
+  
+  - Principio 1: Mostrar comparaciones
+  - Principio 2: Mostrar causalidad, mecanismo, explicación, estructura sistemática.
+  - Principio 3: Mostrar datos multivariados
+  - Principio 4: Integración de evidencia
+  - Principio 5: Describa y documente la evidencia con etiquetas, escalas, fuentes, etc.
+  - Principio 6: El contenido es el rey
+  
+  ### Exploratory Graphs
+  
+  tiene como proposito  comprender las propiedades de los datos, encontrar patrones en los datos, sugerir estrategias de modelado, depurar
+  
+  #### Head
+   permite visualizar las primeras 6 filas de la matriz de datos.
+   
+  ```R
+  head(x)
+  #por defecto retorna los 6 primeros elementos de x.
+  
+  head(x,n)
+  #n se utiliza para especificar una cantidad de elementos distintos de 6 para retornar
+  ```
+  
+  Lee un archivo en formato de tabla y crea un data frame desde el, con los casos correspondientes a filas y las variables a columnas del archivo.
+  
+  #### Dim
+  
+  muestra en numero exacto de filas y columnas de un conjunto de datos.
+  
+  ```R
+  dim(x)
+  ```
+  #### Table
+  
+  Permite crear tablas con la data de entrada, muy util para crear tablas de frecuencias sobre datos particulares.
+  
+  ```R
+  #genera la tabla de frecuencia de la columna de la data especificada
+  table(data$Column)
+  
+  #genera una tabla de datos
+  Table(rows, col_names = NULL, aligns = NULL, col_width = NULL,
+    caption = list())
+  
+  ```
+  
+  #### summary
+  
+  Muestra salidas para cada variable dependiendo del tipo de datos. Cuando los valores son numéricos, muestra el minimo (percentil 0), 1er cuartil, mediana, media mean, 3er cuartil, y máximo (percentil 100). Para variables categóricas (o de tipo texto), llamadas "factores" en R, summary() muestra el numero de veces que cada valor aparece en los datos (esto es llamado "level").
+  
+  
+  ```R
+  summary(data)
+  
+  ```
+  data puede ser en el siguiente formato:
+  
+  ```R
+  summary(data$colummn)
+  
+  ```
+  lo anterios nos muestra la informacion basica sobre la comuna indicada para la data
+  
+  #### quantile
+  
+  es una funcion que genera los cuantiles de una muestra de datos.
+  
+  ```R
+  quantile(x)
+  
+  ```
+  
+  #### Boxplot
+  
+  produce un diagrama de caja con los mismos datos que se generan al usar quantile(x). El borde inferior representa el cuantil 25% y el borde superior el quantil 75%. el color de la caja es especificado con col="color"
+  
+  ```R
+  #usado para explorar
+  boxplot(data, col = “blue”)
+  
+  
+  #formula 
+  boxplot(formula, data = NULL, …, subset, na.action = NULL,
+          xlab = mklab(y_var = horizontal),
+          ylab = mklab(y_var =!horizontal),
+          add = FALSE, ann = !add, horizontal = FALSE,
+          drop = FALSE, sep = ".", lex.order = FALSE)
+          
+  #por defecto
+  boxplot(x, …, range = 1.5, width = NULL, varwidth = FALSE,
+          notch = FALSE, outline = TRUE, names, plot = TRUE,
+          border = par("fg"), col = NULL, log = "",
+          pars = list(boxwex = 0.8, staplewex = 0.5, outwex = 0.5),
+           ann = !add, horizontal = FALSE, add = FALSE, at = NULL)
+  
+  ```
+  
+  en el centro del diagrama de caja se indica la mediana, y adicionalemente
+  los whiskers que estan en la parte inferior y superior de la caja permiten mostrar un aproximado de cuantos puntos de datos son atipicos.
+  
+  
+  #### Abline
+  
+  genera rectas horizontales o verticales en la ubicacion especificada.
+  
+  ```R
+  abline (h = 12)
+  #h horizontal, v vertical
+  ```
+  se puede generar rectas horizontales y verticales 
+  
+  ```R
+  abline (h = 12, v=10)
+  #h horizontal, v vertical
+  ```
+  
+  #### Hist
+  
+  Produce un histograma con saltos y color especificados, el punto mas alto por defecto es 100, cuanto mayor es este numero mas pequeño/ estrecho son las columnas del histograma.
+  
+  ```R
+  hist(data)
+  hist(data,col=NULL)
+  ```
+  
+  #### Rug
+  
+  Genera una grafica en una dimension en escala de grises que representa cuántos puntos de datos en en cada rectangulo del histograma.
+  
+  ```R
+  rug(data)
+  ```
+  
+  #### Names
+  
+  esta funcion permite obtener o establecer nombres de un objeto
+  
+  ```R
+  names(data)
+  ```
+  
+  #### Barplot
+  
+  genera un grafico de barras, que se usa generalmente para datos categóricos.
+  
+  ```R
+  barplot(data, col =NULL)
+  ```
+  
+  #### Par
+  
+  Permite poner varios gráficos en un solo gráfico, esta funcionen tiene una gran cantidad de parametros a utilizar, por ejemplo el parametro mfrow = c (nfilas, ncolumnas) para crear una matriz de gráficos de nfilas x ncolumnas que se completan por fila. mfcol = c (nrows, ncols) llena la matriz por columnas.
+  
+  ```R
+  par()
+  par(mfrow=c(2,2))
+  ```
+  La función par permite generar graficas redimensionadas, para esto se utilizan distintas configuraciones entre ellas pin que genera la grafica con dimensiones en pulgadas.
+  
+  ```R
+  par()$pin
+  #otras formas
+  par("pin")
+  par('pin'))
+  ```
+  El llamado a la funcion fg retorna el color por defecto utilizazdo al momento de generar la grafica.
+  
+  ```R
+  par()$fg
+  #otras formas
+  par("fg")
+  par('fg'))
+  ```
+  
+  La función par permite conocer las caracteristicas que tienen asociado la realizacion de la grafica, tipo de linea, grosor, tipo de escala, color de linea, entre muchas otras.
+  
+  Además de ser una función util para divir y porder mostrar mas de un grafico en una misma salida, se utiliza para especificar los parametros globales de las graficas y que affectaran a todas la graficas generadas durante la sesión.
+  
+  
+  #### Subset
+  La función es la forma más fácil de seleccionar variables y observaciones.
+  
+  ```R
+  subset(x, …)
+  
+  #metodo para matriz
+  subset(x, subset, select, drop = FALSE, …)
+  
+  ```
+  
+  #### scatterplot ( función plot)
+  Las gráficas de dispersión son gráficas bidimensionales que muestran la relación entre dos variables
+  
+  ```R
+  #x,y son vectores numericos
+  plot(x,y)
+  
+  ```
+  Este tipo de grafica permite agregarle color para poder identificar elementos.
+  
+  ##### with
+  Evalúe una expresión R en un entorno construido a partir de datos, posiblemente modificando (una copia de) los datos originales.
+  
+  ```R
+  with(data, expr, …)
+  
+  ```
+  
+  ### Graphics Devices in R
+  
+  #### title
+  permite agregar etiquetas a un grafico
+  
+  ```R
+  title(main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
+        line = NA, outer = FALSE, …)
+  
+  ```
+  
+  #### dev
+  Provee el contol de multiples dispositivos graficos.
+  ```R
+  dev.cur()
+  #muestra el dispositivo de trazado actual
+  
+  dev.off()
+  #luego de trazar un grafico con el dispositivo actual se debe proceder a finalizar el uso del dispositivo.
+  
+  ```
+  #### Formatos para exportar
+  ##### PDF
+  Genera un archivo de tipo pdf con el grafico indicado,  util para graficos de tipo linea.
+  ```R
+  pdf(file="myplot.pdf")
+  
+  ```
+  ##### SVG
+  Genera un archivo de tipo svg,este tipo de archivo es un gráfico vectorial escalable basado en XML. Esto admite animación e interactividad y es potencialmente útil para tramas basadas en la web.
+  
+  ```R
+  svg(file="myplot.svg")
+  
+  ```
+  ##### Win.metafile
+  Genera un archivo en un formato de metarchivo exclusivo de Windows
+  ```R
+   Win.metafile(file="")
+  
+  ```
+  ##### Postscript
+  El archivo generado esta en un formato antiguo para windows puede usarse para crear archivos postscript encapsulados, windows no suele tener un visor por defecto que admita este tipo de archivo. 
+  ```R
+  postscript(file="myplot.ps")
+  
+  ```
+  ##### PNG
+  Resulta bueno para dibujos lineales o imágenes con colores sólidos. Utiliza compresión sin pérdidas (como el antiguo formato GIF), y la mayoría de los navegadores web pueden leer este formato de forma nativa. Además, png es bueno para gráficos con muchos puntos, pero no cambia de tamaño bien.
+  
+  ```R
+  png(file="myplot.png")
+  
+  ```
+  ##### JPEG
+  Formato que utiliza compresión con pérdida, por lo que son buenos para tramas con muchos puntos. Los archivos en formato jpeg no cambian de tamaño bien, pero pueden ser leídos por casi cualquier computadora y cualquier navegador web. No son excelentes para dibujos lineales.
+  
+  ```R
+  jpeg(file="myplot.jpeg")
+  
+  ```
+  ##### TIFF
+  Antiguo metaformato de compresión sin pérdida.
+  
+  ```R
+  tiff(file="myplot.tiff")
+  
+  ```
+  ##### BMP
+  Formato de mapa de bits nativo de Windows.
+  
+  ```R
+  bmp(file="myplot.bmp")
+  
+  ```
+  
+  ### Plotting Systems
+  R tiene 3 sistemas para generar graficas:
+  - Base Plotting System
+  - Lattice Plotting System
+  - ggplot2
+  
+  
+  #### Base Plotting System
+  usa generalmente la funcion plot() scatterplot 
+  ##### Text
+  Genera nombres de etiquetas.
+  ```R
+  text(x, …)
+  
+  #metodo por defecto
+  text (x, y = NULL, labels = seq_along(x$x), adj = NULL,
+       pos = NULL, offset = 0.5, vfont = NULL,
+       cex = 1, col = NULL, font = NULL, …)
+  ```
+  
+  ##### Range
+  Retorna un vector que contiene el minimo y maximo de todos los argmentos dados.
+  ```R
+  range(x, na.rm = FALSE)
+  ```
+  na.rm=TRUE se utiliza para remover los valores NA
+  
+  ##### Length
+  Obtiene o establece la longitud de un vector u otros objetos
+  ```R
+  length(x)
+  length(x) <- value
+  ```
+  ##### Points
+  agrega un punto a la grafica 
+  
+  ```R
+  points(x, ...)
+  ```
+  ##### Legend
+  agrega una leyenda a la grafica, esta función tiene muchos argumentos para utilizar.
+  
+  ```R
+  #lo mas utilizado
+  legend(x, y=NULL, legend, fill, col, bg)
+  ```
+  ##### Mtext
+  Permite escribir un texto en uno de los margenes de la grafica.
+  
+  ```R
+  #lo mas utilizado, por defecto se ubica en la parte supeior de la grafica
+  mtext("texto")
+  ```
+  
+  #### Lattice Plotting System
+  Los graficos se crean con una sola llamada de funcion como cuando se usan los comando xyplot y bwplot. Es util usar lattice cuando se tienen graficos con 3 dimensiones y tambien permite colocar mas de un grafico en una pantalla como lo hace la funcion par.
+  
+  ##### xyplot
+  Crea diagramas de dispersión.
+  
+  ```R
+  #forma general
+  xyplot(y ~ x | f * g, data, layout, panel)
+  
+  #lo mas utilizado
+  xyplot(y~x,data=conjuntoDatos,
+         xlab="etiqueta eje x",
+         ylab="etiqueta eje y",
+         main="Titulo Grafica")
+  
+  ```
+  (~) : el lado izquierdo es la variable del eje y, y el lado derecho es la variable del eje x
+  
+  f/g =condicionamiento / variables categóricas (opcional)
+  
+  layout: especifica como dividir las distintas graficas generadas, por ejemplo divir el grafico en 4 columnas y una fila layout=c(4,1).
+  
+  
+  
+  ##### Source
+  
+  Hace que R acepte de entrada un archivo o una URL
+  ```R
+  #lo mas utilizado
+  source("file.R",local=TRUE)
+  ```
+  local: por defecto es FALSE y corresponde al espacio de trabajo del usuario, TRUE indica el entorno desde el que se llama al archivo.
+  
+  ##### path to File
+  toma el nombre de un archivo como argunmento y asegura que el archivo se encuentre en el computador.
+  
+  ```R
+  pathtofile("file.R")
+  ```
+  se suele utilizar esta funcion junto con source
+  
+  ```R
+  source(pathtofile("file.R"),local=TRUE)
+  ```
+  ##### myedit
+  abre el editor de archivos y muestra el codigo en R.
+  
+  ```R
+  myedit("file.R")
+  ```
+  
+  ##### Str
+  Muestra de manera compacta la estructura de un objeto, es una alternativa de usar la función summary 
+  
+  ```R
+  str(object, …)
+  ```
+  
+  
+  #### ggplot2
+  Es un hibrido entre Base Plotting y lattice systems.
+  
+  ##### qplot
+  Es similar a la funcion plot 
+  ```R
+  #evita usar conjuntoData$x y conjuntoData$y
+  qplot(x, y, data=conjuntoData)
+  
+  ```
+  
+  
+  #### Color
+  
+  ##### Colors
+  muestra la lista de todos los colos disponibles para ser usados en graficas.
+  
+  ```R
+  Colors()
+  ```
+  
+  ##### heat.colors
+  los valores bajos se representan en color rojo y el incremento de valores van del color amarrillo hasta el blanco.
+  
+  ##### topo.colors
+  usa colores topograficos, color azul para los valores mas bajos  y crece hacia el marron para los valores mas altos.
+  
+  ##### Sample
+  toma una muestra del tamaño indicadode los elementos de x, esta muestra puede ser con reemplazo o sin reemplazo.
+  
+  ```R
+  sample(x, size, replace = FALSE, prob = NULL)
+  ```
+  
+  ##### ColorRamp
+  toma la paleta de colores como argumento y devuelve una funcion que toma valores entre 0 y 1 como argumentos, el color de retorno son la mezcla de estos dos argumentos
+  
+  ```R
+  colorRamp(c("red", "green"))
+  ```
+  
+  ##### Pal
+  inicializa un vector de elementos con nombre de colores para definir una paleta de colores.
+  ```R
+  pal        # shows all current color names and values
+  pal["hi"]  # shows the current color for hits (true positives)
+  pal["hi"] <- "gold" 
+  
+  #crea una palaeta de colores con los colores especificados en colorRamp
+  pal <-colorRamp(c("red","blue")
+  ```
+  
+  los colores se representan en formato RGB.
+  
+  ##### Seq
+  
+  genera una secuencia 
+  ```R
+  #de lo mas utilizado
+  seq(from, to)
+  #by indica la frecuencia de salto
+  seq(from, to, by= )
+  
+  #usando la funcion pal se crea una secuencia de colores.
+  pal(seq(0,1,len=6))
+  ```
+  
+  ##### colorRampPalette
+  similar a ColorRamp, esta función toma cualquier conjunto de colores y devuelve una función que toma argumentos enteros y devuelve un vector de colores interpolando la paleta.
+  
+  ```R
+  #forma general
+  colorRampPalette(palette, bias = 1,method=c("spline","linear"))
+  
+  #define una paleta de colores
+  pal <- colorRampPalette(c("red", "yellow"))
+  
+  ```
+  los colores se representan en formato hexadecimal.
+  
+  ##### brewer.pal
+  crea paleta de colores, esta se puede utilizar en conjunto con las funciones colorRamp() y colorRampPalette()
+  
+  ```R
+  brewer.pal(n, "BuGn")
+  ```
+  n es el numero de colores, BuGn es el nombre de la paleta.
+  
+  
+  
+  ##### Image
+  muestra una imagen a color
+  
+  ```R
+  image(x, …)
+  
+  #por defecto
+  image(x, y, z, zlim, xlim, ylim,
+        col = hcl.colors(12, "YlOrRd", rev = TRUE),
+        add = FALSE, xaxs = "i", yaxs = "i", xlab, ylab,
+        breaks, oldstyle = FALSE, useRaster, …)
+  ```
+  n es el numero de colores, BuGn es el nombre de la paleta.
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
