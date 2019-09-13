@@ -1,0 +1,96 @@
+createdAt: "2019-09-12T17:36:40.045Z"
+updatedAt: "2019-09-12T22:14:56.301Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"Base Plotting System\""
+tags: []
+content: '''
+  ---
+  title: "Base Plotting System"
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  
+  # Base Plotting System
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+    * [Plotting Systems](#Plotting-Systems)
+      + [Base Plotting System](#Base-Plotting-System)
+        - [Text](#Text)
+        - [Range](#Range)
+        - [Length](#Length)
+        - [Points](#Points)
+        - [Legend](#Legend)
+        - [Mtext](#Mtext)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  Para extraer y analizar los datos para poder procesarlos de forma correcta, se pueden utilizar tecnicas de visualizacion que permitan entenderlos de forma mas sencilla que el visualizar el conjunto de datos como texto.
+  
+  El etiquetarlo, generar graficos con colores y comparativos nos ayudan en esta tarea del Analisis exploratorio de los datos.
+  
+  
+  ### Plotting Systems
+  R tiene 3 sistemas para generar graficas:
+  - Base Plotting System
+  - Lattice Plotting System
+  - ggplot2
+  
+  
+  #### Base Plotting System
+  usa generalmente la funcion plot() scatterplot 
+  ##### Text
+  Genera nombres de etiquetas.
+  ```R
+  text(x, …)
+  
+  #metodo por defecto
+  text (x, y = NULL, labels = seq_along(x$x), adj = NULL,
+       pos = NULL, offset = 0.5, vfont = NULL,
+       cex = 1, col = NULL, font = NULL, …)
+  ```
+  
+  ##### Range
+  Retorna un vector que contiene el minimo y maximo de todos los argmentos dados.
+  ```R
+  range(x, na.rm = FALSE)
+  ```
+  na.rm=TRUE se utiliza para remover los valores NA
+  
+  ##### Length
+  Obtiene o establece la longitud de un vector u otros objetos
+  ```R
+  length(x)
+  length(x) <- value
+  ```
+  ##### Points
+  agrega un punto a la grafica 
+  
+  ```R
+  points(x, ...)
+  ```
+  ##### Legend
+  agrega una leyenda a la grafica, esta función tiene muchos argumentos para utilizar.
+  
+  ```R
+  #lo mas utilizado
+  legend(x, y=NULL, legend, fill, col, bg)
+  ```
+  ##### Mtext
+  Permite escribir un texto en uno de los margenes de la grafica.
+  
+  ```R
+  #lo mas utilizado, por defecto se ubica en la parte supeior de la grafica
+  mtext("texto")
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

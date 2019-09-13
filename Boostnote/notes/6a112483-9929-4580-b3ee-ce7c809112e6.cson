@@ -1,0 +1,75 @@
+createdAt: "2019-09-12T17:49:01.068Z"
+updatedAt: "2019-09-12T20:29:29.171Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"ggplot2\""
+tags: []
+content: '''
+  ---
+  title: "ggplot2"
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  
+  # ggplot2
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+    * [Plotting Systems](#Plotting-Systems)
+      + [ggplot2](#ggplot2)
+        - [qplot](#qplot)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  Para extraer y analizar los datos para poder procesarlos de forma correcta, se pueden utilizar tecnicas de visualizacion que permitan entenderlos de forma mas sencilla que el visualizar el conjunto de datos como texto.
+  
+  El etiquetarlo, generar graficos con colores y comparativos nos ayudan en esta tarea del Analisis exploratorio de los datos.
+  
+  
+  ### Plotting Systems
+  R tiene 3 sistemas para generar graficas:
+  - Base Plotting System
+  - Lattice Plotting System
+  - ggplot2
+  
+  
+  
+  #### ggplot2
+  Es un hibrido entre Base Plotting y lattice systems.
+  
+  ##### qplot
+  Es similar a la funcion plot 
+  ```R
+  #evita usar conjuntoData$x y conjuntoData$y
+  qplot(x, y, data=conjuntoData)
+  
+  ```
+  
+  otra forma de generar una grafica usando la función.
+  ```R
+  qplot(x, y=NULL, data, geom="auto", 
+        xlim = c(NA, NA), ylim =c(NA, NA))
+  ```
+  Forma general 
+  ```R
+  
+  qplot(x, y, ..., data, facets = NULL, margins = FALSE, geom = "auto",
+    xlim = c(NA, NA), ylim = c(NA, NA), log = "", main = NULL,
+    xlab = NULL, ylab = NULL, asp = NA, stat = NULL,
+    position = NULL)
+    
+    ```
+  geom: permite especificar el tipo de grafico que se va a generar, por defecto son puntos si se indica los valores de x e y, y genera histogramas si solo se especifica x.
+  
+  los valores permitidos para geom y generar distintos tipos de graficas son:  "point", "smooth", "boxplot", "line", "histogram", "density", "bar", and "jitter".
+    
+'''
+linesHighlighted: [
+  58
+]
+isStarred: false
+isTrashed: false

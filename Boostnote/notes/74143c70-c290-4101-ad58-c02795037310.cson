@@ -1,0 +1,141 @@
+createdAt: "2019-09-12T17:49:26.682Z"
+updatedAt: "2019-09-12T22:16:49.588Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"Working with Colors\""
+tags: []
+content: '''
+  ---
+  title: "Working with Colors"
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  
+  # Working with Colors
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+    * [Plotting Systems](#Plotting-Systems)
+      + [Color](#Color)
+        - [Colors](#Colors)
+        - [heat.colors](#heatcolors)
+        - [topo.colors](#topocolors)
+        - [Sample](#Sample)
+        - [ColorRamp](#ColorRamp)
+        - [Pal](#Pal)
+        - [Seq](#Seq)
+        - [colorRampPalette](#colorRampPalette)
+        - [brewer.pal](#brewerpal)
+        - [Image](#Image)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  Para extraer y analizar los datos para poder procesarlos de forma correcta, se pueden utilizar tecnicas de visualizacion que permitan entenderlos de forma mas sencilla que el visualizar el conjunto de datos como texto.
+  
+  El etiquetarlo, generar graficos con colores y comparativos nos ayudan en esta tarea del Analisis exploratorio de los datos.
+  
+  
+  ### Plotting Systems
+  
+  #### Color
+  
+  ##### Colors
+  muestra la lista de todos los colos disponibles para ser usados en graficas.
+  
+  ```R
+  Colors()
+  ```
+  
+  ##### heat.colors
+  los valores bajos se representan en color rojo y el incremento de valores van del color amarrillo hasta el blanco.
+  
+  ##### topo.colors
+  usa colores topograficos, color azul para los valores mas bajos  y crece hacia el marron para los valores mas altos.
+  
+  ##### Sample
+  toma una muestra del tamaño indicadode los elementos de x, esta muestra puede ser con reemplazo o sin reemplazo.
+  
+  ```R
+  sample(x, size, replace = FALSE, prob = NULL)
+  ```
+  
+  ##### ColorRamp
+  toma la paleta de colores como argumento y devuelve una funcion que toma valores entre 0 y 1 como argumentos, el color de retorno son la mezcla de estos dos argumentos
+  
+  ```R
+  colorRamp(c("red", "green"))
+  ```
+  
+  ##### Pal
+  inicializa un vector de elementos con nombre de colores para definir una paleta de colores.
+  ```R
+  pal        # shows all current color names and values
+  pal["hi"]  # shows the current color for hits (true positives)
+  pal["hi"] <- "gold" 
+  
+  #crea una palaeta de colores con los colores especificados en colorRamp
+  pal <-colorRamp(c("red","blue")
+  ```
+  
+  los colores se representan en formato RGB.
+  
+  ##### Seq
+  
+  genera una secuencia 
+  ```R
+  #de lo mas utilizado
+  seq(from, to)
+  #by indica la frecuencia de salto
+  seq(from, to, by= )
+  
+  #usando la funcion pal se crea una secuencia de colores.
+  pal(seq(0,1,len=6))
+  ```
+  
+  ##### colorRampPalette
+  similar a ColorRamp, esta función toma cualquier conjunto de colores y devuelve una función que toma argumentos enteros y devuelve un vector de colores interpolando la paleta.
+  
+  ```R
+  #forma general
+  colorRampPalette(palette, bias = 1,method=c("spline","linear"))
+  
+  #define una paleta de colores
+  pal <- colorRampPalette(c("red", "yellow"))
+  
+  ```
+  los colores se representan en formato hexadecimal.
+  
+  ##### brewer.pal
+  crea paleta de colores, esta se puede utilizar en conjunto con las funciones colorRamp() y colorRampPalette()
+  
+  ```R
+  brewer.pal(n, "BuGn")
+  ```
+  n es el numero de colores, BuGn es el nombre de la paleta.
+  
+  
+  
+  ##### Image
+  muestra una imagen a color
+  
+  ```R
+  image(x, …)
+  
+  #por defecto
+  image(x, y, z, zlim, xlim, ylim,
+        col = hcl.colors(12, "YlOrRd", rev = TRUE),
+        add = FALSE, xaxs = "i", yaxs = "i", xlab, ylab,
+        breaks, oldstyle = FALSE, useRaster, …)
+  ```
+  n es el numero de colores, BuGn es el nombre de la paleta.
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
