@@ -1,5 +1,5 @@
 createdAt: "2019-09-11T17:53:13.795Z"
-updatedAt: "2019-09-13T15:58:49.057Z"
+updatedAt: "2019-09-13T16:48:15.082Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
 title: "\"Grouping and Chaining with dplyr\""
@@ -59,8 +59,8 @@ content: '''
   
   `x` vector numero de donde los cuantiles son queridos
   `probs` vector numerico de probablidades con valores en [0,1]
-  `na.rm` si cierto, todos los NA o NaN son eliminados de x antes de sacar los cuantiles.
-  `names` si cierto, el resultado tiene el atributo names.
+  `na.rm` si TRUE, todos los NA o NaN son eliminados de x antes de sacar los cuantiles.
+  `names` si TRUE, el resultado tiene el atributo names.
   `type` un entero entre 1 y 9 para saber cual algoritmo de cuatiles se utilizara.
   `...` argumentos de otros metodos.
   
