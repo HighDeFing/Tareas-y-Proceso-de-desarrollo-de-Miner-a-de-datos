@@ -1,0 +1,31 @@
+createdAt: "2019-09-13T15:43:01.414Z"
+updatedAt: "2019-09-13T16:01:39.599Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"Tidying Data with tidyr\""
+tags: []
+content: '''
+  ---
+  title: "Tidying Data with tidyr"
+  author: "heider"
+  date: "12/9/2019"
+  output: html_document
+  ---
+  
+  # Tidying Data with tidyr
+  
+  **Contenidos**
+  
+  <!-- toc -->
+  
+  - [library(tidyr)](#librarytidyr)
+  
+  <!-- tocstop -->
+  
+  ## library(tidyr)
+  
+  Se utiliza para cargar el paquete de la libreria donde estan las funciones de `tidyr` normalmente esto lo tenemos que hacer de forma manual.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

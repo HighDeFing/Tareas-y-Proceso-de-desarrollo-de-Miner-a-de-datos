@@ -1,5 +1,5 @@
 createdAt: "2019-09-11T17:53:13.795Z"
-updatedAt: "2019-09-11T23:08:08.835Z"
+updatedAt: "2019-09-13T15:58:49.057Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
 title: "\"Grouping and Chaining with dplyr\""
@@ -18,15 +18,13 @@ content: '''
   
   <!-- toc -->
   
-  - [Grouping and Chaining with dplyr](#Grouping-and-Chaining-with-dplyr)
-      + [group_by](#group_by)
-      + [quantile](#quantile)
-      + [View](#View)
-      + [chaining](#chaining)
+  - [group_by](#group_by)
+  - [quantile](#quantile)
+  - [View](#View)
+  - [chaining](#chaining)
   
   <!-- tocstop -->
   
-  ## Grouping and Chaining with dplyr
   
   #### group_by
   
