@@ -1,0 +1,253 @@
+createdAt: "2019-09-12T20:03:42.686Z"
+updatedAt: "2019-09-13T16:31:03.882Z"
+type: "MARKDOWN_NOTE"
+folder: "9a7367601b9b14252c12"
+title: "\"Exploratory Graphs\""
+tags: []
+content: '''
+  ---
+  title: "Exploratory Graphs"
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  
+  # Exploratory Graphs 
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+    * [Exploratory Graphs](#Exploratory-Graphs)
+      + [Head](#Head)
+      + [Dim](#Dim)
+      + [Table](#Table)
+      + [summary](#summary)
+      + [quantile](#quantile)
+      + [Boxplot](#Boxplot)
+      + [Abline](#Abline)
+      + [Hist](#Hist)
+      + [Rug](#Rug)
+      + [Names](#Names)
+      + [Barplot](#Barplot)
+      + [Par](#Par)
+      + [Subset](#Subset)
+      + [scatterplot](#scatterplot)
+        - [Plot](#Plot)
+        - [with](#with)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  Para extraer y analizar los datos para poder procesarlos de forma correcta, se pueden utilizar tecnicas de visualizacion que permitan entenderlos de forma mas sencilla que el visualizar el conjunto de datos como texto.
+  
+  El etiquetarlo, generar graficos con colores y comparativos nos ayudan en esta tarea del Analisis exploratorio de los datos.
+  
+  ### Exploratory Graphs
+  
+  tiene como proposito  comprender las propiedades de los datos, encontrar patrones en los datos, sugerir estrategias de modelado, depurar
+  
+  #### Head
+   permite visualizar las primeras 6 filas de la matriz de datos.
+   
+  ```R
+  head(x)
+  #por defecto retorna los 6 primeros elementos de x.
+  
+  head(x,n)
+  #n se utiliza para especificar una cantidad de elementos distintos de 6 para retornar
+  ```
+  
+  Lee un archivo en formato de tabla y crea un data frame desde el, con los casos correspondientes a filas y las variables a columnas del archivo.
+  
+  #### Dim
+  
+  muestra en numero exacto de filas y columnas de un conjunto de datos.
+  
+  ```R
+  dim(x)
+  ```
+  #### Table
+  
+  Permite crear tablas con la data de entrada, muy util para crear tablas de frecuencias sobre datos particulares.
+  
+  ```R
+  #genera la tabla de frecuencia de la columna de la data especificada
+  table(data$Column)
+  
+  #genera una tabla de datos
+  Table(rows, col_names = NULL, aligns = NULL, col_width = NULL,
+    caption = list())
+  
+  ```
+  
+  #### summary
+  
+  Muestra salidas para cada variable dependiendo del tipo de datos. Cuando los valores son numéricos, muestra el minimo (percentil 0), 1er cuartil, mediana, media mean, 3er cuartil, y máximo (percentil 100). Para variables categóricas (o de tipo texto), llamadas "factores" en R, summary() muestra el numero de veces que cada valor aparece en los datos (esto es llamado "level").
+  
+  
+  ```R
+  summary(data)
+  
+  ```
+  data puede ser en el siguiente formato:
+  
+  ```R
+  summary(data$colummn)
+  
+  ```
+  lo anterios nos muestra la informacion basica sobre la comuna indicada para la data
+  
+  #### quantile
+  
+  es una funcion que genera los cuantiles de una muestra de datos.
+  
+  ```R
+  quantile(x)
+  
+  ```
+  
+  #### Boxplot
+  
+  produce un diagrama de caja con los mismos datos que se generan al usar quantile(x). El borde inferior representa el cuantil 25% y el borde superior el quantil 75%. el color de la caja es especificado con col="color"
+  
+  ```R
+  #usado para explorar
+  boxplot(data, col = “blue”)
+  
+  
+  #formula 
+  boxplot(formula, data = NULL, …, subset, na.action = NULL,
+          xlab = mklab(y_var = horizontal),
+          ylab = mklab(y_var =!horizontal),
+          add = FALSE, ann = !add, horizontal = FALSE,
+          drop = FALSE, sep = ".", lex.order = FALSE)
+          
+  #por defecto
+  boxplot(x, …, range = 1.5, width = NULL, varwidth = FALSE,
+          notch = FALSE, outline = TRUE, names, plot = TRUE,
+          border = par("fg"), col = NULL, log = "",
+          pars = list(boxwex = 0.8, staplewex = 0.5, outwex = 0.5),
+           ann = !add, horizontal = FALSE, add = FALSE, at = NULL)
+  
+  ```
+  
+  en el centro del diagrama de caja se indica la mediana, y adicionalemente
+  los whiskers que estan en la parte inferior y superior de la caja permiten mostrar un aproximado de cuantos puntos de datos son atipicos.
+  
+  
+  #### Abline
+  
+  genera rectas horizontales o verticales en la ubicacion especificada.
+  
+  ```R
+  abline (h = 12)
+  #h horizontal, v vertical
+  ```
+  se puede generar rectas horizontales y verticales 
+  
+  ```R
+  abline (h = 12, v=10)
+  #h horizontal, v vertical
+  ```
+  
+  #### Hist
+  
+  Produce un histograma con saltos y color especificados, el punto mas alto por defecto es 100, cuanto mayor es este numero mas pequeño/ estrecho son las columnas del histograma.
+  
+  ```R
+  hist(data)
+  hist(data,col=NULL)
+  ```
+  
+  #### Rug
+  
+  Genera una grafica en una dimension en escala de grises que representa cuántos puntos de datos en en cada rectangulo del histograma.
+  
+  ```R
+  rug(data)
+  ```
+  
+  #### Names
+  
+  esta funcion permite obtener o establecer nombres de un objeto
+  
+  ```R
+  names(data)
+  ```
+  
+  #### Barplot
+  
+  genera un grafico de barras, que se usa generalmente para datos categóricos.
+  
+  ```R
+  barplot(data, col =NULL)
+  ```
+  
+  #### Par
+  
+  Permite poner varios gráficos en un solo gráfico, esta funcionen tiene una gran cantidad de parametros a utilizar, por ejemplo el parametro mfrow = c (nfilas, ncolumnas) para crear una matriz de gráficos de nfilas x ncolumnas que se completan por fila. mfcol = c (nrows, ncols) llena la matriz por columnas.
+  
+  ```R
+  par()
+  par(mfrow=c(2,2))
+  ```
+  La función par permite generar graficas redimensionadas, para esto se utilizan distintas configuraciones entre ellas pin que genera la grafica con dimensiones en pulgadas.
+  
+  ```R
+  par()$pin
+  #otras formas
+  par("pin")
+  par('pin'))
+  ```
+  El llamado a la funcion fg retorna el color por defecto utilizazdo al momento de generar la grafica.
+  
+  ```R
+  par()$fg
+  #otras formas
+  par("fg")
+  par('fg'))
+  ```
+  
+  La función par permite conocer las caracteristicas que tienen asociado la realizacion de la grafica, tipo de linea, grosor, tipo de escala, color de linea, entre muchas otras.
+  
+  Además de ser una función util para divir y porder mostrar mas de un grafico en una misma salida, se utiliza para especificar los parametros globales de las graficas y que affectaran a todas la graficas generadas durante la sesión.
+  
+  
+  #### Subset
+  La función es la forma más fácil de seleccionar variables y observaciones.
+  
+  ```R
+  subset(x, …)
+  
+  #metodo para matriz
+  subset(x, subset, select, drop = FALSE, …)
+  
+  ```
+  
+  #### scatterplot 
+  
+  Las gráficas de dispersión son gráficas bidimensionales que muestran la relación entre dos variables
+  
+  ##### Plot
+  función que permite graficar.
+  ```R
+  #x,y son vectores numericos
+  plot(x,y)
+  
+  ```
+  Este tipo de grafica permite agregarle color para poder identificar elementos.
+  
+  ##### with
+  Evalúe una expresión R en un entorno construido a partir de datos, posiblemente modificando (una copia de) los datos originales.
+  
+  ```R
+  with(data, expr, …)
+  
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,114 @@
+createdAt: "2019-09-12T17:30:35.605Z"
+updatedAt: "2019-09-13T16:31:02.099Z"
+type: "MARKDOWN_NOTE"
+folder: "9a7367601b9b14252c12"
+title: "\"Graphics Devices in R \""
+tags: []
+content: '''
+  ---
+  title: "Graphics Devices in R "
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  # Graphics Devices in R
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Graphics Devices in R](#Graphics-Devices-in-R)
+      + [Graphics Devices in R](#Graphics-Devices-in-R-1)
+        - [title](#title)
+        - [dev](#dev)
+        - [Formatos para exportar](#Formatos-para-exportar)
+          * [PDF](#PDF)
+          * [SVG](#SVG)
+          * [Win.metafile](#Winmetafile)
+          * [Postscript](#Postscript)
+          * [PNG](#PNG)
+          * [JPEG](#JPEG)
+          * [TIFF](#TIFF)
+          * [BMP](#BMP)
+  
+  <!-- tocstop -->
+  # Graphics Devices in R
+  
+  ### Graphics Devices in R
+  
+  #### title
+  permite agregar etiquetas a un grafico
+  
+  ```R
+  title(main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
+        line = NA, outer = FALSE, …)
+  
+  ```
+  
+  #### dev
+  Provee el contol de multiples dispositivos graficos.
+  ```R
+  dev.cur()
+  #muestra el dispositivo de trazado actual
+  
+  dev.off()
+  #luego de trazar un grafico con el dispositivo actual se debe proceder a finalizar el uso del dispositivo.
+  
+  ```
+  #### Formatos para exportar
+  ##### PDF
+  Genera un archivo de tipo pdf con el grafico indicado,  util para graficos de tipo linea.
+  ```R
+  pdf(file="myplot.pdf")
+  
+  ```
+  ##### SVG
+  Genera un archivo de tipo svg,este tipo de archivo es un gráfico vectorial escalable basado en XML. Esto admite animación e interactividad y es potencialmente útil para tramas basadas en la web.
+  
+  ```R
+  svg(file="myplot.svg")
+  
+  ```
+  ##### Win.metafile
+  Genera un archivo en un formato de metarchivo exclusivo de Windows
+  ```R
+   Win.metafile(file="")
+  
+  ```
+  ##### Postscript
+  El archivo generado esta en un formato antiguo para windows puede usarse para crear archivos postscript encapsulados, windows no suele tener un visor por defecto que admita este tipo de archivo. 
+  ```R
+  postscript(file="myplot.ps")
+  
+  ```
+  ##### PNG
+  Resulta bueno para dibujos lineales o imágenes con colores sólidos. Utiliza compresión sin pérdidas (como el antiguo formato GIF), y la mayoría de los navegadores web pueden leer este formato de forma nativa. Además, png es bueno para gráficos con muchos puntos, pero no cambia de tamaño bien.
+  
+  ```R
+  png(file="myplot.png")
+  
+  ```
+  ##### JPEG
+  Formato que utiliza compresión con pérdida, por lo que son buenos para tramas con muchos puntos. Los archivos en formato jpeg no cambian de tamaño bien, pero pueden ser leídos por casi cualquier computadora y cualquier navegador web. No son excelentes para dibujos lineales.
+  
+  ```R
+  jpeg(file="myplot.jpeg")
+  
+  ```
+  ##### TIFF
+  Antiguo metaformato de compresión sin pérdida.
+  
+  ```R
+  tiff(file="myplot.tiff")
+  
+  ```
+  ##### BMP
+  Formato de mapa de bits nativo de Windows.
+  
+  ```R
+  bmp(file="myplot.bmp")
+  
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,5 +1,9 @@
 createdAt: "2019-09-09T17:15:27.334Z"
+<<<<<<< HEAD
 updatedAt: "2019-09-11T16:10:06.019Z"
+=======
+updatedAt: "2019-09-12T19:58:58.539Z"
+>>>>>>> EDA_P1_V1
 type: "MARKDOWN_NOTE"
 folder: "fc3c864b52edeb1ad8df"
 title: "\"Exploratory Data Analysis P1\""
@@ -12,7 +16,7 @@ content: '''
   output: html_document
   ---
   
-  # Getting and Cleaning Data
+  # Exploratory Graphs
   
   **Contenidos**
   <!-- toc -->
@@ -33,7 +37,8 @@ content: '''
       + [Barplot](#Barplot)
       + [Par](#Par)
       + [Subset](#Subset)
-      + [scatterplot ( función plot)](#scatterplot--función-plot)
+      + [scatterplot](#scatterplot)
+        - [Plot](#Plot)
         - [with](#with)
     * [Graphics Devices in R](#Graphics-Devices-in-R)
       + [title](#title)
@@ -275,9 +280,12 @@ content: '''
   
   ```
   
-  #### scatterplot ( función plot)
+  #### scatterplot 
+  
   Las gráficas de dispersión son gráficas bidimensionales que muestran la relación entre dos variables
   
+  ##### Plot
+  función que permite graficar.
   ```R
   #x,y son vectores numericos
   plot(x,y)
@@ -292,6 +300,7 @@ content: '''
   with(data, expr, …)
   
   ```
+  
   
   ### Graphics Devices in R
   

@@ -1,0 +1,74 @@
+createdAt: "2019-09-12T20:01:51.831Z"
+updatedAt: "2019-09-13T16:30:58.432Z"
+type: "MARKDOWN_NOTE"
+folder: "9a7367601b9b14252c12"
+title: "\"Principles of Analytic Graphs\""
+tags: []
+content: '''
+  ---
+  title: "Principles of Analytic Graphs"
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  
+  # Principles of Analytic Graphs 
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+      + [Principles of Analytic Graphs](#Principles-of-Analytic-Graphs)
+        - [Principio 1: Mostrar comparaciones](#Principio-1-Mostrar-comparaciones)
+        - [Principio 2: Mostrar causalidad, mecanismo, explicación, estructura sistemática.](#Principio-2-Mostrar-causalidad-mecanismo-explicación-estructura-sistemática)
+        - [Principio 3: Mostrar datos multivariados](#Principio-3-Mostrar-datos-multivariados)
+        - [Principio 4: Integración de evidencia](#Principio-4-Integración-de-evidencia)
+        - [Principio 5: Describa y documente la evidencia con etiquetas, escalas, fuentes, etc.](#Principio-5-Describa-y-documente-la-evidencia-con-etiquetas-escalas-fuentes-etc)
+        - [Principio 6: El contenido es lo mas importante.](#Principio-6-El-contenido-es-lo-mas-importante)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  Para extraer y analizar los datos para poder procesarlos de forma correcta, se pueden utilizar tecnicas de visualizacion que permitan entenderlos de forma mas sencilla que el visualizar el conjunto de datos como texto.
+  
+  El etiquetarlo, generar graficos con colores y comparativos nos ayudan en esta tarea del Analisis exploratorio de los datos.
+  
+  #### Principles of Analytic Graphs
+  
+  Principios basicos para presentar los datos de manera efectiva mostrando los resultados de forma significativa, los principios son 6:
+  
+  - Principio 1: Mostrar comparaciones
+  - Principio 2: Mostrar causalidad, mecanismo, explicación, estructura sistemática.
+  - Principio 3: Mostrar datos multivariados
+  - Principio 4: Integración de evidencia
+  - Principio 5: Describa y documente la evidencia con etiquetas, escalas, fuentes, etc.
+  - Principio 6: El contenido es el rey
+  
+  
+  ##### Principio 1: Mostrar comparaciones
+  La idea de este princio es tener al menos un conjunto de datos con el cual se va a realizar la comparación.
+  La comparación se va a realizar entre un conjunto de control y un conjunto de pruebas (hipotesis)
+  
+  
+  ##### Principio 2: Mostrar causalidad, mecanismo, explicación, estructura sistemática.
+  
+  Este principio tiene como finalidad formar hipótesis para evidenciar que muestra una relación (marco causal, por qué sucedió algo).
+  
+  ##### Principio 3: Mostrar datos multivariados
+  Es importante ultilizar mas de 2 variables para generar las graficas, esto nos permite visualizar relaciones entre conjuntos de datos, incluso se puede divir estos datos en grupos para observar con mas precisión ciertas relaciones (uso de matrices de confusión).
+  
+  
+  ##### Principio 4: Integración de evidencia
+  Presentar los datos de distintas formas utilizando diagramas ricos en información que sean una herramienta util para el análisis de los datos.
+  
+  
+  ##### Principio 5: Describa y documente la evidencia con etiquetas, escalas, fuentes, etc.
+  Es importante agregar etiquetas que describan los datos y que estas se visualicen de forma eficiente utilizando fuentes y escalas apropiadas para la presentación.
+  
+  ##### Principio 6: El contenido es lo mas importante.
+  La forma en que se presenten los datos debe de ser de calidad que muestre la relevancia de los mismo y mantenga la integridad del contenido para que asi el resultado final sea un grafico de calidad que represente los datos.
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

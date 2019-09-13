@@ -1,0 +1,109 @@
+createdAt: "2019-09-12T17:48:22.581Z"
+updatedAt: "2019-09-13T16:30:54.828Z"
+type: "MARKDOWN_NOTE"
+folder: "9a7367601b9b14252c12"
+title: "\"Lattice Plotting System\""
+tags: []
+content: '''
+  ---
+  title: "Lattice Plotting System"
+  author: "kmcolina"
+  date: "05/09/2019"
+  output: html_document
+  ---
+  
+  # Lattice Plotting System
+  
+  **Contenidos**
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+    * [Plotting Systems](#Plotting-Systems)
+      + [Lattice Plotting System](#Lattice-Plotting-System)
+        - [xyplot](#xyplot)
+        - [Source](#Source)
+        - [path to File](#path-to-File)
+        - [myedit](#myedit)
+        - [Str](#Str)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  Para extraer y analizar los datos para poder procesarlos de forma correcta, se pueden utilizar tecnicas de visualizacion que permitan entenderlos de forma mas sencilla que el visualizar el conjunto de datos como texto.
+  
+  El etiquetarlo, generar graficos con colores y comparativos nos ayudan en esta tarea del Analisis exploratorio de los datos.
+  
+  
+  ### Plotting Systems
+  R tiene 3 sistemas para generar graficas:
+  - Base Plotting System
+  - Lattice Plotting System
+  - ggplot2
+  
+  
+  
+  #### Lattice Plotting System
+  Los graficos se crean con una sola llamada de funcion como cuando se usan los comando xyplot y bwplot. Es util usar lattice cuando se tienen graficos con 3 dimensiones y tambien permite colocar mas de un grafico en una pantalla como lo hace la funcion par.
+  
+  ##### xyplot
+  Crea diagramas de dispersión.
+  
+  ```R
+  #forma general
+  xyplot(y ~ x | f * g, data, layout, panel)
+  
+  #lo mas utilizado
+  xyplot(y~x,data=conjuntoDatos,
+         xlab="etiqueta eje x",
+         ylab="etiqueta eje y",
+         main="Titulo Grafica")
+  
+  ```
+  (~) : el lado izquierdo es la variable del eje y, y el lado derecho es la variable del eje x
+  
+  f/g =condicionamiento / variables categóricas (opcional)
+  
+  layout: especifica como dividir las distintas graficas generadas, por ejemplo divir el grafico en 4 columnas y una fila layout=c(4,1).
+  
+  
+  
+  ##### Source
+  
+  Hace que R acepte de entrada un archivo o una URL
+  ```R
+  #lo mas utilizado
+  source("file.R",local=TRUE)
+  ```
+  local: por defecto es FALSE y corresponde al espacio de trabajo del usuario, TRUE indica el entorno desde el que se llama al archivo.
+  
+  ##### path to File
+  toma el nombre de un archivo como argunmento y asegura que el archivo se encuentre en el computador.
+  
+  ```R
+  pathtofile("file.R")
+  ```
+  se suele utilizar esta funcion junto con source
+  
+  ```R
+  source(pathtofile("file.R"),local=TRUE)
+  ```
+  ##### myedit
+  abre el editor de archivos y muestra el codigo en R.
+  
+  ```R
+  myedit("file.R")
+  ```
+  
+  ##### Str
+  Muestra de manera compacta la estructura de un objeto, es una alternativa de usar la función summary 
+  
+  ```R
+  str(object, …)
+  ```
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
