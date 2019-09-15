@@ -1,5 +1,5 @@
 createdAt: "2019-09-05T19:06:19.835Z"
-updatedAt: "2019-09-11T18:29:53.634Z"
+updatedAt: "2019-09-15T20:24:19.051Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
 title: "\"Manipulating Data with dplyr\""
@@ -53,7 +53,7 @@ content: '''
   
   Lee un archivo en formato de tabla y crea un data frame desde el, con los casos correspondientes a filas y las variables a columnas del archivo.
   
-  `stringAsFactors` = `FALSE` por default R tiene esta opcion como `TRUE` en el turorial se indica colocarla como falsa, la razon es que en este caso, no queremos que nuestros strings pasen a ser factores (representacions basicamente numericas), si no strings.
+  - `stringAsFactors` = `FALSE` por default R tiene esta opcion como `TRUE` en el turorial se indica colocarla como falsa, la razon es que en este caso, no queremos que nuestros strings pasen a ser factores (representacions basicamente numericas), si no strings.
   
   #### dim
   
@@ -118,8 +118,8 @@ content: '''
   select(.data, ...)
   ```
   
-  `.data` bebe ser un tibble.
-  `...` Mas expresionas sin comillas y separadas por comas. Tambien se pueden usar variables como si fueran posiciones, es decir, 5:20 (5 hasta 20)
+  - `.data` bebe ser un tibble.
+  - `...` Mas expresionas sin comillas y separadas por comas. Tambien se pueden usar variables como si fueran posiciones, es decir, 5:20 (5 hasta 20)
   
   Si ponemos las variables con `-`, tambien podemos selecionar variables que no queremos, lo mismo puede ser aplicado como si fueran posiciones, es decir -(5:20) (-5 hasta -20)
   
@@ -132,8 +132,8 @@ content: '''
   filter(cran, package == "swirl")
   ```
   
-  `.data` bebe ser un tibble.
-  `...` Expresiones logicas definidas en terminos de las variables/columnas en `.data`, varias condiciones AND separadas por comas `,` y condiciones OR con `|`
+  - `.data` bebe ser un tibble.
+  - `...` Expresiones logicas definidas en terminos de las variables/columnas en `.data`, varias condiciones AND separadas por comas `,` y condiciones OR con `|`
   
   Las condiciones pasadas en filter pueden ser cualquiera de los operadores de comparacion estandar.
   
@@ -147,8 +147,8 @@ content: '''
   arrange(.data, ...)
   arrange(cran2, ip_id)
   ```
-  `.data` bebe ser un tibble.
-  `...` variables sin comillas que queremos ordenar.
+  - `.data` bebe ser un tibble.
+  - `...` variables sin comillas que queremos ordenar.
   
   Para ordenar de forma decendente utilizar `desc()`
   ```R
@@ -164,8 +164,8 @@ content: '''
   mutate(cran3, size_mb = size / 2^20)
   ```
   
-  `.data` bebe ser un tibble.
-  `...` nombre y expresiones u operaciones que queramos operar en todas las filas de una variable.
+  - `.data` bebe ser un tibble.
+  - `...` nombre y expresiones u operaciones que queramos operar en todas las filas de una variable.
   
   Podemos referenciar columnas que hayamos creado.
   
@@ -187,8 +187,8 @@ content: '''
   summarize(cran, avg_bytes = mean(size))
   ```
   
-  `.data` bebe ser un tibble.
-  `...` nombre y valor pares las funciones que resumen. El nombre sera el nombre de la columna y el valor pueden ser expresiones como `mean(x)`, `n()`, `sum(is.na(y))`.
+  - `.data` bebe ser un tibble.
+  - `...` nombre y valor pares las funciones que resumen. El nombre sera el nombre de la columna y el valor pueden ser expresiones como `mean(x)`, `n()`, `sum(is.na(y))`.
   
   
   

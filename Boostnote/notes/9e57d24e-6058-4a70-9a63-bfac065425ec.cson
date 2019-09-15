@@ -1,5 +1,5 @@
 createdAt: "2019-09-13T15:43:01.414Z"
-updatedAt: "2019-09-13T20:12:14.868Z"
+updatedAt: "2019-09-15T20:26:31.806Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
 title: "\"Tidying Data with tidyr\""
@@ -24,6 +24,11 @@ content: '''
     * [spread](#spread)
   - [library(readr)](#libraryreadr)
     * [parse_number](#parse_number)
+  - [unique](#unique)
+  - [library(dplyr)](#librarydplyr)
+    * [bind_rows](#bind_rows)
+    * [select](#select)
+      + [contains()](#contains)
   
   <!-- tocstop -->
   
@@ -39,12 +44,12 @@ content: '''
   gather(data, key = "key", value = "value", ..., na.rm = FALSE,convert = FALSE, factor_key = FALSE)
   ```
   
-  `data` un data frame
-  `key, value` Nombres de las nuevas columnas clave-valor, como string o simbolos. Puede ser con comillas o sin ellas.
-  `...` seleccion de columnas, si se deja vacio toma todas las columnas, se puede usar `x:z` para seleccionar o `-x` para dejar una columna por fuera.
-  `na.rm` si TRUE, todos los NA o NaN son eliminados en la salida.
-  `convert` si TRUE, correra automaticamente `type.convert()` en la columna de clave. Util si los datos son numericos, enteros o logicos.
-  `factor_key` si FALSE, por defecto, los valores clave se guardaran como un vector de caracteres.
+  - `data` un data frame
+  - `key, value` Nombres de las nuevas columnas clave-valor, como string o simbolos. Puede ser con comillas o sin ellas.
+  - `...` seleccion de columnas, si se deja vacio toma todas las columnas, se puede usar `x:z` para seleccionar o `-x` para dejar una columna por fuera.
+  - `na.rm` si TRUE, todos los NA o NaN son eliminados en la salida.
+  - `convert` si TRUE, correra automaticamente `type.convert()` en la columna de clave. Util si los datos son numericos, enteros o logicos.
+  - `factor_key` si FALSE, por defecto, los valores clave se guardaran como un vector de caracteres.
   
   Ejemplo:
   | |grade| male| female|
@@ -82,15 +87,15 @@ content: '''
   separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn", ...)
   ```
   
-  `data` un data frame.
-  `col` Columna a separar
-  `into` Nombres de las nuevas variables para crear un vector de caracteres
-  `sep` separador entre columnas, si es un caracter se interpreta como una expresion regular si es un numero se interpreta como una posicion.
-  `remove` si TRUE, remueve el la columna de entrada en la salida del data frame.
-  `covert` si TRUE, correra automaticamente `type.convert()` en la columna de clave. Util si los datos son numericos, enteros o logicos.
-  `extra` si `sep` es un vector, controla que sucede si hay muchos caracteres, `warn` es por defecto, emite una advertencia y elimina valores extra.
-  `fill` si `sep` es un vector, controla que sucede si no hay suficientes caracteres, `warn` es por defecto, emite una advertencia y rellena desde la derecha.
-  `...` Argumentos adicionales
+  - `data` un data frame.
+  - `col` Columna a separar
+  - `into` Nombres de las nuevas variables para crear un vector de caracteres
+  - `sep` separador entre columnas, si es un caracter se interpreta como una expresion regular si es un numero se interpreta como una posicion.
+  - `remove` si TRUE, remueve el la columna de entrada en la salida del data frame.
+  - `covert` si TRUE, correra automaticamente `type.convert()` en la columna de clave. Util si los datos son numericos, enteros o logicos.
+  - `extra` si `sep` es un vector, controla que sucede si hay muchos caracteres, `warn` es por defecto, emite una advertencia y elimina valores extra.
+  - `fill` si `sep` es un vector, controla que sucede si no hay suficientes caracteres, `warn` es por defecto, emite una advertencia y rellena desde la derecha.
+  - `...` Argumentos adicionales
   
   Ejemplo:
   Tabla students2
@@ -142,12 +147,12 @@ content: '''
   ```R
   spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE,sep = NULL)
   ```
-  `data` un data frame.
-  `key, value` nombres de columnas o posiciones. Puede ser con comillas o sin ellas.
-  `fill` si se utiliza, los valores faltantes seran rellenados por este valor.
-  `covert` si TRUE, correra automaticamente `type.convert()` `con asis = TRUE` en cada columna. Util si los datos son numericos, enteros o logicos pero fueron coaccinados a un string.
-  `drop` si FALSE, tendra los factores que no aparecen en la data y los rellenara con `fill`
-  `sep` si NULL, los nombres de las columnas seran tomados de los valores de las claves, si no NULL, los nombres de las columnas seran dados por `<nombre_clave><sep><valor_clave>`
+  - `data` un data frame.
+  - `key, value` nombres de columnas o posiciones. Puede ser con comillas o sin ellas.
+  - `fill` si se utiliza, los valores faltantes seran rellenados por este valor.
+  - `covert` si TRUE, correra automaticamente `type.convert()` `con asis = TRUE` en cada columna. Util si los datos son numericos, enteros o logicos pero fueron coaccinados a un string.
+  - `drop` si FALSE, tendra los factores que no aparecen en la data y los rellenara con `fill`
+  - `sep` si NULL, los nombres de las columnas seran tomados de los valores de las claves, si no NULL, los nombres de las columnas seran dados por `<nombre_clave><sep><valor_clave>`
   
   Ejemplo:
   Tabla students3
@@ -194,8 +199,89 @@ content: '''
   
   ### parse_number
   
+  Esta funcion elimina todos los valores no numericos antes o despues del primer numero.
   
+  ```R
+  parse_number(x, na = c("", "NA"), locale = default_locale(),
+    trim_ws = TRUE)
+  col_number()
+  ```
   
+  - `x` Vector de caracteres para cambiar.
+  - `na` Vector de caracteres string para interpretar como valores faltantes.
+  - `locale` Por defecto utiliza US-centric, pero se puede utilizar `locale()` para definir codificacion, marca de decimales, nombres de dias y meses.
+  - `trim_ws` Espacios en blanco antes y despues si deben ser cortados.
+  
+  Ejemplo:
+  Tabla3
+  |    	| name   	| class  	| final 	| midterm 	|
+  |----	|--------	|--------	|-------	|---------	|
+  | 1  	| Brian  	| class1 	| B     	| B       	|
+  | 2  	| Brian  	| class5 	| C     	| A       	|
+  | 3  	| Jeff   	| class2 	| E     	| D       	|
+  | 4  	| Jeff   	| class4 	| C     	| A       	|
+  | 5  	| Karen  	| class3 	| C     	| C       	|
+  | 6  	| Karen  	| class4 	| A     	| A       	|
+  | 7  	| Roger  	| class2 	| A     	| C       	|
+  | 8  	| Roger  	| class5 	| A     	| B       	|
+  | 9  	| Sally  	| class1 	| C     	| A       	|
+  | 10 	| Sally  	| class3 	| C     	| B       	|
+  
+  ```R
+  mutate(tabla3, class = parse_number(class)) %>%
+  print
+  ```
+  
+  |    	| name   	| class  	| final 	| midterm 	|
+  |----	|--------	|--------	|-------	|---------	|
+  | 1  	| Brian  	| 1 	| B     	| B       	|
+  | 2  	| Brian  	| 5 	| C     	| A       	|
+  | 3  	| Jeff   	| 2 	| E     	| D       	|
+  | 4  	| Jeff   	| 4 	| C     	| A       	|
+  | 5  	| Karen  	| 3 	| C     	| C       	|
+  | 6  	| Karen  	| 4 	| A     	| A       	|
+  | 7  	| Roger  	| 2 	| A     	| C       	|
+  | 8  	| Roger  	| 5 	| A     	| B       	|
+  | 9  	| Sally  	| 1 	| C     	| A       	|
+  | 10 	| Sally  	| 3 	| C     	| B       	|
+  
+  ## unique
+  
+  Retorna un vectro, data frame o arreglo de X pero con los elementos duplicados eliminados.
+  
+  ```R
+  unique(x, incomparables = FALSE, …)
+  ```
+  - `x` un vectro, data frame o arreglo.
+  - `incomparables` un vector de valores que no pueden ser comparados, FALSE es un valor especial significando que todos los valores pueden ser comparados.
+  
+  Util para eliminar id repetidos o informacion redundante.
+  
+  ## library(dplyr)
+  
+  ### bind_rows
+  
+  Este es un metodo eficiente de el patron comun de `do.call(rbind, dfs)` o `do.call(cbind, dfs)` para unir varios data frames en uno.
+  
+  ```R
+  bind_rows(..., .id = NULL)
+  bind_cols(...)
+  ```
+  
+  - `...` Data frames a combinar. 
+  Cuando se unen por filas, se unen a travez del nombre, cualquier columna faltante se rellena con NA.
+  Cuando se unen por columnas, las filas son unidas por posicion, asi todos los data frames tienen que tener el mismo numero de filas.
+  - `.id` Cuando un id es suministrado una nueva columna de identificadores es creada que relaciona cada fila con su data frame original.
+  
+  ### select
+  
+  #### contains()
+  
+  ```R
+  select(.data,-contains("total"))
+  ```
+  
+  - `contains()` es una funcion especial que solo puede ser usada en select sirve para seleccionar columnas que contenga cierto string.
   
   
   

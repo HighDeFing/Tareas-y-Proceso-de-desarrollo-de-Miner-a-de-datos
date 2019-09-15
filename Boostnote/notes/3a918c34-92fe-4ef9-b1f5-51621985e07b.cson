@@ -1,0 +1,193 @@
+createdAt: "2019-09-15T20:09:30.592Z"
+updatedAt: "2019-09-15T21:26:28.959Z"
+type: "MARKDOWN_NOTE"
+folder: "b1852f4472eb7b3106fc"
+title: "\"Dates and Times with lubridate\""
+tags: []
+content: '''
+  ---
+  title: "Dates and Times with lubridate"
+  author: "heider"
+  date: "15/9/2019"
+  output: html_document
+  ---
+  
+  # Dates and Times with lubridate
+  
+  <!-- toc -->
+  
+  - [library(lubridate)](#librarylubridate)
+    * [today](#today)
+    * [year](#year)
+    * [month](#month)
+    * [day](#day)
+    * [wday](#wday)
+    * [now](#now)
+    * [hour, minute, second](#hour-minute-second)
+    * [ymd, dmy, mdy, etc.](#ymd-dmy-mdy-etc)
+    * [update](#update)
+    * [Aritmetica](#Aritmetica)
+    * [with_tz](#with_tz)
+    * [interval](#interval)
+    * [as.period](#asperiod)
+  
+  <!-- tocstop -->
+  
+  ## library(lubridate)
+  
+  Se utiliza para cargar el paquete de la libreria donde estan las funciones de `lubridate` normalmente esto lo tenemos que hacer de forma manual. Utilizado para manipular fechas.
+  
+  ### today
+  
+  Devuelve el dia actual.
+  
+  ```R
+  today(tzone = "")
+  ```
+  - `tzone` un vector de caracteres especificando la zona horaria, por defecto utiliza la zona horaria del sistema. Para ver la zonas validas las encontramos aqui: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  
+  ### year
+  
+  Devuleve el año de una fecha
+  
+  ```R
+  year(x)
+  ```
+  
+  ### month
+  
+  Devuelve el mes de una fecha.
+  
+  ```R
+  month(x, label = FALSE, abbr = TRUE, locale = Sys.getlocale("LC_TIME"))
+  ```
+  - `x` un objeto de tipo fecha.
+  - `label` logical, si TRUE devuelve el mes como un nombre `January` en vez de un numero `1`.
+  - `abbr` logical. si FALSE muestra el mes como `January` si TRUE lo muestra como una abreviatura como `Jan`. Si `label` es falso `abbr` es ignorada.
+  - `locale` para saber de donde se obtienen los nombres de los meses.
+  
+  ### day
+  
+  Devuelve el dia actual de un objeto fecha.
+  
+  ```R
+  day(x)
+  ```
+  
+  ### wday
+  
+  Devuelve el dia actual como un dia de la semana.
+  
+  ```R
+  wday(x, label = FALSE, abbr = TRUE,
+    week_start = getOption("lubridate.week.start", 7),
+    locale = Sys.getlocale("LC_TIME"))
+  ```
+  - `x` un objeto de tipo fecha.
+  - `label` logical, si TRUE devuelve el mes como un nombre `Sunday` en vez de un numero `1`.
+  - `abbr` logical. si FALSE muestra el mes como `Sunday` si TRUE lo muestra como una abreviatura como `Sun`. Si `label` es falso `abbr` es ignorada.
+  - `week_start` Para saber que dia utilizar como primero se puede modificar globalmente con `"lubridate.week.start"` segun ISO por defecto 1 es Monday y 7 es Sunday.
+  - - `locale` para saber de donde se obtienen los nombres de los dias.
+  
+  ### now
+  
+  Devuelve el tiempo actual.
+  
+  ```R
+  now(tzone = "")
+  ```
+  - `tzone` un vector de caracteres especificando la zona horaria, por defecto utiliza la zona horaria del sistema.
+  
+  ### hour, minute, second
+  
+  Devuelve la hora, minuto o segundo de un objeto fecha.
+  ```
+  hour(x)
+  minute(x)
+  second(x)
+  ```
+  -----------
+  lubridate ofrece ymd(), dmy(), hms(), ymd_hms(), etc., donde cada letra de una funcion corresponde a la posicion de
+  | years (y) años, months (m) meses, days (d) dias, hours (h) horas, minutes (m) minutos, y/o seconds (s) segundos in en los formatos fecha-tiempo leidos.
+  
+  ### ymd, dmy, mdy, etc.
+  
+  Convierte un string a un objeto de tipo fecha en formato POSIXct
+  
+  ```R
+  ymd("1989-05-17")
+  ymd("1989 May 17")
+  mdy("March 12, 1975")
+  dmy(25081985)
+  ymd("1920/1/2")
+  hms("03:22:14")
+  ymd_hms("2014-08-23 17:23:02")
+  ```
+  ### update
+  
+  Regresa una fecha con los elementos especificados actualizados, los no especificados quedaran sin cambiar.
+  
+  ```R
+  update(object, ..., roll = FALSE,
+    week_start = getOption("lubridate.week.start", 7), simple = NULL)
+  ```
+  
+  - `object` un objeto fecha-tiempo.
+  - `...` years, months, ydays, wdays, mdays, days, hours, minutes, seconds, tzs (time zone component)
+  - `roll` logico, si TRUE y la fecha cae en un instante no existente (DST, 29th February, etc.) mueve la fecha hasta un punto valido. Si FLASE, por defecto, produce NA en una fecha no existente.
+  - `week_start` Para saber que dia utilizar como primero se puede modificar globalmente con `"lubridate.week.start"` segun ISO por defecto 1 es Monday y 7 es Sunday.
+  - simple logico, descontinuado. Funciona igual que roll.
+  
+  ### Aritmetica
+  
+  Lubridate permite realizar operaciones aritmeticas entre fechas
+  
+  ```R
+   nyc <- now("America/New_York")
+  depart <- days(2) + nyc
+  ```
+  
+  ### with_tz
+  
+  Retorna una fecha como aparaceria si estuvieramos en una zona diferente. El momento actual de tiempo tomado no cambia, solo la zona horaria con que fue medido. `with_tz` por defecto utiliza Universal Coordinated time zone (UTC) cuando una zona no reconocida es utilizada.
+  
+  ```R
+  with_tz(time, tzone = "")
+  ```
+  
+  - `time` un objeto del tipo fecha. POSIXct.
+  - `tzone` un string que contiene un una zona horaria a convertir.
+  
+  ### interval
+  
+  Crea un objeto interval con las fechas especificadas de inicio y final.
+  
+  ```R
+  interval(start, end = NULL, tzone = tz(start))
+  ```
+  
+  - `start, end` Objetos de tipo fecha, POSIXt.
+  - `tzone` una zona horaria para desplegar el intervalo.
+  
+  ### as.period
+  
+  Cambia un intervalo, a una clase periodo.
+  
+  ```R
+  as.period(x, unit, ...)
+  ```
+  - `x` Un intervalo.
+  - `unit` Un string de carateres especificando las unidades para construir el periodo.
+  - `...` argumentos adicionales a pasar a `as.period`
+  
+  El periodo que no arroja no toma en concideracion años bisiestos, o horario de verano o invierno, la duracion de un minuto, dia, semana o año es relativo a donde ocurra. En cambio, la duracion de un segundo es igual, dependiendo de donde ocurra.
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
