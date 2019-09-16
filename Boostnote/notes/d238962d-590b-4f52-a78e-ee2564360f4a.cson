@@ -1,0 +1,29 @@
+createdAt: "2019-09-16T01:29:31.766Z"
+updatedAt: "2019-09-16T23:17:42.312Z"
+type: "MARKDOWN_NOTE"
+folder: "9a7367601b9b14252c12"
+title: "\"Dimension Reduction\""
+tags: []
+content: '''
+  ---
+  title: "Dimension Reduction"
+  author: "heider2112"
+  date: "16/09/2019"
+  output: html_document
+  ---
+  
+  # Dimension Reduction
+  
+  <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+  
+  <!-- tocstop -->
+  
+  ## Introduccion
+  
+  En esta leccion explicaremos PCA y SVD
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
