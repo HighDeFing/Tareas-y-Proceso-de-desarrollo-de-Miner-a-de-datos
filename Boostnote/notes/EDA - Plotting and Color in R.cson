@@ -1,0 +1,144 @@
+
+type: " MARKDOWN_NOTE"
+folder: "  "
+title: "\"EDA - Plotting and Color in R\""
+tags: []
+content: '''
+  ---
+  title: "EDA - Plotting and Color in R"
+  author: "Adolfo"
+  date: "15/9/2019"
+  output: html_document
+  ---
+  
+  # EDA - Plotting and Color in R
+  
+  **Contenidos**
+  <!-- toc -->
+
+- [Introduccion](#Introduccion)
+- [grDevices](#grDevices)
+    + [colors()](#colors)
+    + [gcolorRamp](#gcolorRamp)
+    + [colorRampPalette](#colorRampPalette)
+
+<!-- tocstop -->
+  
+  ## Introduccion
+  
+ La generacion de graficos para el analisis exploratorio de datos puede ser algo confuso, puede que los datos sean muy complejos y dificil de interpretar. Ya sea por la difultad intrínseca del dato en si o sólo por facortores como el solapamiendo de datos en una misma grafica que hacen dificil la lectura de la misma. Por ello es muy relevante la coloracion a la hora de presentar una grafica en particular ya que esta contribuye a su facil lectura y posterior enetendimiento entfatizando la información mas relevante.
+  
+  
+  ## grDevices
+  
+  Es una libreria de R donde se encuentra una colección de fuciones para el soporte de gráficos básicos de cuadricula. Tales como: Type1Font,axisTicks,Hershey,dev,make.rgb,densCols, etc. A continuacion se especifican algunas:
+  
+  #### colors()
+  
+  ```R
+  colors()
+  [1] "white"                "aliceblue"            "antiquewhite"        
+  [4] "antiquewhite1"        "antiquewhite2"        "antiquewhite3"       
+  [7] "antiquewhite4"        "aquamarine"           "aquamarine1"         
+ [10] "aquamarine2"          "aquamarine3"          "aquamarine4"         
+ [13] "azure"                "azure1"               "azure2"              
+ [16] "azure3"               "azure4"               "beige"               
+ [19] "bisque"               "bisque1"              "bisque2"             
+ [22] "bisque3"              "bisque4"              "black"  
+ .
+ .
+ .
+ [652] "yellow"               "yellow1"              "yellow2"             
+[655] "yellow3"              "yellow4"              "yellowgreen"    
+  ```
+  
+Esta función permite listar los 655 colores disponibles por su identificador correspondiente.
+
+  #### gcolorRamp 
+  
+  Devuelve una función con argumento un vector de valores entre 0 y 1 que se asignan a una matriz numérica de valores de color RGB con una fila por color y 3 o 4 columnas.
+  
+  ```R
+ pal <- colorRamp(c("red", "blue"))
+ 
+ pal(0)
+    
+    
+        [,1] [,2] [,3]
+[1,]  255    0    0
+  ```
+  
+Tanto para colorRamp () como para colorRampPalette (), representas una nueca paleta de colores unica segun la matriz que se genere, como por ejemplo
+
+ ```R
+> pal(1)
+     [,1] [,2] [,3]
+[1,]    0    0  255
+
+#Representa la intensidad mas alta del azul.
+
+  ``` 
+  
+  Tambien se pueden generar sequencias como la sigu
+  
+   ```R
+  pal(seq(0, 1, len = 6))
+     [,1] [,2] [,3]
+[1,]  255    0    0
+[2,]  204    0   51
+[3,]  153    0  102
+[4,]  102    0  153
+[5,]   51    0  204
+[6,]    0    0  255
+ ```
+ Donde se itera para generar seis vectores de 3 columnas cada una. Cada un representando un color, en este ejemplo 51 puntos diferencian a cada color.
+  
+ NOTA: la funcion pal() se inicializa en un vector de elementos con nombre (colores) para definir el esquema de color.
+
+      
+  #### colorRampPalette
+  
+  Esta funcion es imilar a colorRamp. También toma una
+| paleta de colores y devuelve una función. Esta función, sin embargo, toma un número entero. El argumentos devuelve un numero entero en este caso en un vector de colores cada uno de representa una mezcla de colores de la paleta original.
+  
+  ```R
+  
+p1 <- colorRampPalette(c("red", "blue"))
+
+> p1(2)
+[1] "#FF0000" "#0000FF"
+  ```
+  
+  Donde  #FF0000 y #0000FF representan numeros hexadecimal cuya correspondencia es el rojo y el azul. Igualmente, puede generar sequencias de colores, pero expresados en un vector con valores hexadecimales.
+  
+```R
+  > p1(seq(0,1,len=6))
+  > 
+  > p1(6)
+  [1] "#FF0000" "#CC0033" "#990066" "#650099" "#3200CC" "#0000FF"
+```
+
+Podemos crear una paleta con dos colores cualesquiera y entre ellos crear una "coleccion" de tantos colores como queramos entre ellos, como por ejemplo 20 colores entre rojo y amarillo
+  
+  ```R
+  >p2 <- colorRampPalette(c("red","yellow"))
+  >1] "#FF0000" "#F1000D" "#E4001A" "#D60028" "#C90035" "#BB0043" "#AE0050" "#A1005D"
+ [9] "#93006B" "#860078" "#780086" "#6B0093" "#5D00A1" "#5000AE" "#4300BB" "#3500C9"
+[17] "#2800D6" "#1A00E4" "#0D00F1" "#0000FF"
+
+```
+
+Para visualizar esto se peude usar la funcion showme ("argumento"), que se encarga de imprimir informacion basica de un dataframe. Ejemplos:
+
+```R
+showme(x, size = 10, show = c("tiles", "head", "tail", "none"))
+
+> showMe(p2(20))
+> # donde p2(20) es la paleta creada con los 
+> # colores entre rojo y amarillo 
+```
+
+
+linesHighlighted: []
+isStarred: false
+isTrashed: false
