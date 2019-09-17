@@ -1,12 +1,12 @@
 createdAt: "2019-09-15T20:09:30.592Z"
-updatedAt: "2019-09-15T21:26:28.959Z"
+updatedAt: "2019-09-17T03:47:49.605Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
-title: "\"Dates and Times with lubridate\""
+title: "\"4 Dates and Times with lubridate\""
 tags: []
 content: '''
   ---
-  title: "Dates and Times with lubridate"
+  title: "4 Dates and Times with lubridate"
   author: "heider"
   date: "15/9/2019"
   output: html_document

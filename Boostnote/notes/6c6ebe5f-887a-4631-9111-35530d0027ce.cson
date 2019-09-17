@@ -1,12 +1,12 @@
 createdAt: "2019-09-05T19:06:19.835Z"
-updatedAt: "2019-09-15T20:24:19.051Z"
+updatedAt: "2019-09-17T03:47:44.574Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
-title: "\"Manipulating Data with dplyr\""
+title: "\"1 Manipulating Data with dplyr\""
 tags: []
 content: '''
   ---
-  title: "Manipulating Data with dplyr"
+  title: "1 Manipulating Data with dplyr"
   author: "heider"
   date: "30/7/2019"
   output: html_document

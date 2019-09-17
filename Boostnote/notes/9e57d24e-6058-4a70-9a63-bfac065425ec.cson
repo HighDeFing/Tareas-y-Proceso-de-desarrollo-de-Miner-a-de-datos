@@ -1,12 +1,12 @@
 createdAt: "2019-09-13T15:43:01.414Z"
-updatedAt: "2019-09-15T20:26:31.806Z"
+updatedAt: "2019-09-17T03:47:56.461Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
-title: "\"Tidying Data with tidyr\""
+title: "\"3 Tidying Data with tidyr\""
 tags: []
 content: '''
   ---
-  title: "Tidying Data with tidyr"
+  title: "3 Tidying Data with tidyr"
   author: "heider"
   date: "12/9/2019"
   output: html_document

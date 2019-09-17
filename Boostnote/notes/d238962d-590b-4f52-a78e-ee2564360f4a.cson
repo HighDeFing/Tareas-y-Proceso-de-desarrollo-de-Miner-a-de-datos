@@ -1,12 +1,12 @@
 createdAt: "2019-09-16T01:29:31.766Z"
-updatedAt: "2019-09-16T23:17:42.312Z"
+updatedAt: "2019-09-17T03:48:01.522Z"
 type: "MARKDOWN_NOTE"
 folder: "9a7367601b9b14252c12"
-title: "\"Dimension Reduction\""
+title: "\"13 Dimension Reduction\""
 tags: []
 content: '''
   ---
-  title: "Dimension Reduction"
+  title: "13 Dimension Reduction"
   author: "heider2112"
   date: "16/09/2019"
   output: html_document
@@ -17,13 +17,188 @@ content: '''
   <!-- toc -->
   
   - [Introduccion](#Introduccion)
+    * [heatmap](#heatmap)
+  - [svd](#svd)
+    * [formula](#formula)
+  - [scale](#scale)
+  - [Relacion entre PCA y SVD](#Relacion-entre-PCA-y-SVD)
+    * [prcmp](#prcmp)
   
   <!-- tocstop -->
   
   ## Introduccion
   
-  En esta leccion explicaremos PCA y SVD
+  En esta leccion explicaremos PCA y SVD y lo importante de reducir dimensionalidad y que tan bien representa la data original.
+  
+  ### heatmap
+  
+  Un mapa de calor es una imagen de color falso basicamente `image(t(x))` con un dendograma añadido a la izquierda y al tope del grafico. Tipicamente ordenando las filas y las columnas acorde a varios valores (las medias de las columas y las filas) y las restricciones que los dendogramas impongan.
+  
+  ```R
+  heatmap(x, Rowv = NULL, Colv = if(symm)"Rowv" else NULL,
+          distfun = dist, hclustfun = hclust,
+          reorderfun = function(d, w) reorder(d, w),
+          add.expr, symm = FALSE, revC = identical(Colv, "Rowv"),
+          scale = c("row", "column", "none"), na.rm = TRUE,
+          margins = c(5, 5), ColSideColors, RowSideColors,
+          cexRow = 0.2 + 1/log10(nr), cexCol = 0.2 + 1/log10(nc),
+          labRow = NULL, labCol = NULL, main = NULL,
+          xlab = NULL, ylab = NULL,
+          keep.dendro = FALSE, verbose = getOption("verbose"), …)
+  ```
+  
+  - `x` matrix numerica de valores a ser graficados.
+  - `Rowv` determina como los dendogramas de las filas son dibujados
+  - `Colv` determina como los dendogramas para las columnas son dibujados
+  - `disfun` funcion usada para calcular la distancia entre filas y columnas.
+  - `hclustfun` funcion para determinar el agrupamiento jerarquico cuando `Rowv` y `Colv` no son dendogramas.
+  - `reorderfun` funcion para organizar los pesos de los dendogramas
+  - `add.expr` expresion que es evaluada cuando se llama `image`
+  - `symm` logico indicando si x deberia ser tratado como simetrico.
+  - `revC` logico indicando si las columans deberian ser `rev` ertidas para graficas.
+  - `na.rm` logico indicando si los valores `NA` deberias ser removidos.
+  - `margins` vectro numerico de longitud 2 que contiene los margenes para columnas y filas.
+  - `ColSideColors` opcional para denotar los colores de la barra horizontal denotando las columnas de `x`
+  - `RowSideColors` opcinal para denotar los colores de la barra vertical denotando las filas de `x`
+  - `cexRow, cexCol` Numeros positivos utilizados para etiquetar las columas y las filas.
+  - `labRow, labCol` Caracteres utilizados para etiquetar las columnas y las filas
+  - `main, xlab, ylab` media, x- y y-ejes.
+  - `keep.dendro` logical indicando si los dendogramas deberian permanecer en el resultado.
+  - `verbose` logical indicando si informacion deberia ser mostrada.
+  - `...` argumentos adicionales pasados a `image`
+  
+  Ejemplo: dataMatrix
+  ![Screenshot from 2019-09-16 21-27-05.png](:storage/d238962d-590b-4f52-a78e-ee2564360f4a/c95d46be.png)
+  
+  ```R
+  set.seed(678910)
+  for(i in 1:40){
+    # flip a coin
+    coinFlip <- rbinom(1,size=1,prob=0.5)
+    # if coin is heads add a common pattern to that row
+    if(coinFlip){
+      dataMatrix[i,] <- dataMatrix[i,] + rep(c(0,3),each=5)
+    }
+  }
+  ```
+  - `set.seed` es utilizado para que los numeros aleatorios sean los mismos.
+  - `for` fue utilizado para 40 filas
+  - `rbinom` lanzar una moneda sigue una distribucion binomial. `1` es n numero de observaciones, `size=1` es numero de intentos y `prob=0.5` es la probabilidad en este caso cara o sello. `rbinom` genera casos aleatorios.
+  - `coinFlip` tendra valor de 0 o de 1
+  - `dataMatrix` cambiara los valores de las filas con su mismo valor mas 3.
+  
+  ```R
+  source("addPatt.R", local = TRUE)
+  ```
+  
+  - `source` acepta poner en ejecucion un script en R dado su nombre.
+  - `locale` Si TRUE ejecuta bajo el ambiente donde el script fue llamado, si FALSE se ejecuta desde el ambiente global.
+  
+  Asi que las filas afectadas sus primeros 5 valores seguiran con una media igual a 0, pero las otras 5 estaran mas cerca de 3.
+  
+  ![Screenshot from 2019-09-16 21-40-20.png](:storage/d238962d-590b-4f52-a78e-ee2564360f4a/23ef95f2.png)
+  
+  Algunas filas han cambiado y se puede ver como son mas amarillas y rojas indicando valores mas altos.
+  
+  ```R
+  heatmap(dataMatrix)
+  ```
+  
+  ![Screenshot from 2019-09-16 21-45-26.png](:storage/d238962d-590b-4f52-a78e-ee2564360f4a/cc6a7446.png)
+  
+  Ahora se puede observar que el dendograma del tope se ha separado en dos grupos, las filas todavia parecen aleatorias.
+  
+  ## svd
+  
+  Realiza la Singular Value Decomposition (descomposicion de valores singulares) de una matriz rectangular.
+  
+  ```R
+  svd(x, nu = min(n, p), nv = min(n, p), LINPACK = FALSE)
+  ```
+  - `x` Una matriz numerica real o de complejos rectangular.
+  - `nu` el numero de vectores izquierda singualres a ser computados, entre 0 y n = nrow(x)
+  - `nv` el numero de vectores derecha singulares a ser computados entre 0 y p = ncol(x)
+  - `LINPACK` en desuso e ignorado.
+  ### formula 
+  - Permitir a $X$ ser una matriz rectagular.
+  - SVD realiza la una descomposicion matricial que corresponde a:
+  $X = UDV^T$
+  
+  - $U$ = vector sigular izquierdo, una matriz ortogonal.
+  - $D$ = valores sigulares, una matriz diagonal.
+  - $V$ = vector sigular derecho, una matriz ortogonal.
+  
+  Ejemplo: mat = x
+  
+  $X =$ $\\begin{bmatrix}1 & 2 & 3\\\\2 & 5 & 7 \\end{bmatrix}$
+  
+  ```R
+  svd(mat)
+  ```
+  
+  $D =$ $\\begin{bmatrix}  9.5899624 & 0.1806108 \\\\\\end{bmatrix}$
+  
+  $U =$ $\\begin{bmatrix} -0.3897782 & -0.9209087 \\\\ -0.9209087  & 0.3897782\\end{bmatrix}$
+  
+  $V =$ $\\begin{bmatrix} -0.2327012 & -0.7826345 \\\\ -0.5614308  & 0.5928424 \\\\ -0.7941320 & -0.1897921 \\end{bmatrix}$
+  
+  ## scale
+  
+  Esto significa restar a cada columna su media y dividir el resultado por el la deviacion estandar de la columna
+  
+  ```R
+  scale(x, center = TRUE, scale = TRUE)
+  ```
+  
+  - `x` una matriz numerica.
+  - `center` un valor logico o un vector parecido-numerico que corresponda a las columnas de X. `as.numeric(.)` se aplicara si `is.numeric(.)` es verdad.
+  - `scale` un valor logico o un vector parecido-numerico que corresponda a las columnas de X.
+  
+  ## Relacion entre PCA y SVD
+  
+  ```R
+  svd(scale(mat))
+  ```
+  
+  $D =$ $\\begin{bmatrix}  1.732051 & 0.000000 \\\\\\end{bmatrix}$
+  
+  $U =$ $\\begin{bmatrix} -0.7071068 & 0.7071068 \\\\ 0.7071068 & 0.7071068\\end{bmatrix}$
+  
+  $V =$ $\\begin{bmatrix}  0.5773503 & -0.5773503 \\\\  0.5773503 & 0.7886751 \\\\ 0.5773503 &-0.2113249 \\end{bmatrix}$
+  
+  ### prcmp
+  
+  Realiza la operacion de PCA (Pricipal Component Analysis) y retorna un objeto de tipo prcomp
+  
+  ```R
+  prcomp(x, ...)
+  ```
+  
+  `x` una matriz numerica o compleja.
+  `...` argumentos de otros metodos.
+  ```R
+  prcomp(scale(mat))
+  Standard deviations (1, .., p=2):
+  [1] 1.732051 0.000000
+  
+  Rotation (n x k) = (3 x 2):
+             PC1        PC2
+  [1,] 0.5773503 -0.5773503
+  [2,] 0.5773503  0.7886751
+  [3,] 0.5773503 -0.2113249
+  ```
+  
+  Se puede observar que D es igual a las desviaciones estandar y que PC1 y PC2  son iguales a la matriz V de SVD.
+  
+  
+  
+  
+  
+  
+  
 '''
-linesHighlighted: []
+linesHighlighted: [
+  130
+]
 isStarred: false
 isTrashed: false

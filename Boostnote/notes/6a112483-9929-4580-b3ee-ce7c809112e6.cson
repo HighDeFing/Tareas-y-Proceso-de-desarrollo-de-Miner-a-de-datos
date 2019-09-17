@@ -1,12 +1,12 @@
 createdAt: "2019-09-12T17:49:01.068Z"
-updatedAt: "2019-09-13T16:31:00.041Z"
+updatedAt: "2019-09-17T03:49:23.407Z"
 type: "MARKDOWN_NOTE"
 folder: "9a7367601b9b14252c12"
-title: "\"ggplot2\""
+title: "\"8 ggplot2\""
 tags: []
 content: '''
   ---
-  title: "ggplot2"
+  title: "8 ggplot2"
   author: "kmcolina"
   date: "05/09/2019"
   output: html_document

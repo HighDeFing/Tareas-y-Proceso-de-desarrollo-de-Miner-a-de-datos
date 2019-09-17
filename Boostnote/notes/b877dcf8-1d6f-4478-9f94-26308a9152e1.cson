@@ -1,12 +1,12 @@
 createdAt: "2019-09-11T17:53:13.795Z"
-updatedAt: "2019-09-15T20:27:42.979Z"
+updatedAt: "2019-09-17T03:47:53.334Z"
 type: "MARKDOWN_NOTE"
 folder: "b1852f4472eb7b3106fc"
-title: "\"Grouping and Chaining with dplyr\""
+title: "\"2 Grouping and Chaining with dplyr\""
 tags: []
 content: '''
   ---
-  title: "Grouping and Chaining with dplyr"
+  title: "2 Grouping and Chaining with dplyr"
   author: "heider"
   date: "30/7/2019"
   output: html_document
