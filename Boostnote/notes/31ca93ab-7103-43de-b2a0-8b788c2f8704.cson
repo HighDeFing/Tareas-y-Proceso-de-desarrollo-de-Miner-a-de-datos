@@ -1,0 +1,128 @@
+createdAt: "2019-09-17T14:25:47.143Z"
+updatedAt: "2019-09-17T14:26:43.688Z"
+type: "MARKDOWN_NOTE"
+folder: "9a7367601b9b14252c12"
+title: "\"12 K Means Clustering  \""
+tags: []
+content: '''
+  ---
+  title: "12 K Means Clustering  "
+    author: "Adolfo"
+    date: "17/9/2019"
+    output: html_document
+  ---
+    
+    # K Means Clustering  
+    
+    **Contenidos**
+    <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+    * [na.omit()](#naomit)
+    * [R scale ()](#R-scale-)
+    * [seed(obj)](#seedobj)
+    * [kmeans()](#kmeans)
+    * [fviz_cluster](#fviz_cluster)
+  
+  <!-- tocstop -->
+    
+    ## Introduccion
+    
+  Agrupación de K-medias (MacQueen, 1967), en la que cada agrupación está representada por el centro o la media de los puntos de datos que pertenecen a la agrupación. Agrupación de K-medidas o PAM (Particionamiento en torno a los medidas, Kaufman y Rousseeuw, 1990), en el que cada grupo está representado por uno de los objetos del grupo. También describiremos una variante de PAM llamada CLARA (Clustering Large Applications) que se utiliza para analizar grandes conjuntos de datos. Esta tecnica es usada en estudios de marketing para identificar subgrupos de clientes para ofrecer cierto tipo de productos segun sus preferencias.
+    
+  
+  
+   ### na.omit()
+    
+   Este es un método data.table para las estadísticas genéricas S3 :: na.omit. Las partes internas están escritas en C para la velocidad.
+   
+  ```R
+  na.omit(object, cols=seq_along(object), invert=FALSE, …) 
+  ```
+  
+  Argumentos:
+  - Object: una tabla de datos
+  - Cols :Un vector de nombres de columna (o números) en el cual verificar los valores faltantes.
+  - Invert: argumento logico, Si es FALSE omite todas las filas con los valores faltantes (predeterminado). TRUE devuelve solo aquellas filas con valores faltantes en su lugar.
+  
+  
+  ### R scale () 
+  
+  Es una función genérica cuyo método predeterminado centra y/o escala las columnas de una matriz numérica.
+    ```R
+  scale(x, center = TRUE, scale = TRUE)
+    ```
+   
+    
+  ### seed(obj)
+  
+  Devuelve la semilla que se generó al azar o especificada por el usuario. La semilla se puede especificar para cualquier operación aleatoria, p. genSeq.
+  
+  ```R
+  seed(obj)
+  ```
+  ### kmeans() 
+  Realiza clusters de k-means en una matriz de datos.
+  
+  ```R  
+    kmeans(x, centers, iter.max = 10, nstart = 1,
+         algorithm = c("Hartigan-Wong", "Lloyd", "Forgy",
+                       "MacQueen"), trace=FALSE) 
+   ```
+   
+   Argumentos:
+   
+   - x: matriz numérica de datos, o un objeto que puede ser forzado a dicha matriz (como un vector numérico o un marco de datos con todas las columnas numéricas).
+  
+  - iter:El número máximo de iteraciones permitido,
+  
+  - nstart: si centros es un número, ¿cuántos conjuntos aleatorios deberían elegirse?
+  
+  - algorithm: carácter: puede ser abreviado. Tenga en cuenta que "Lloyd" y "Forgy" son nombres alternativos para un algoritmo.
+  
+  - object: un objeto R de la clase "kmeans", típicamente el resultado ob de ob <- kmeans (..)
+  
+  - trace:número lógico o entero, actualmente solo se usa en el método predeterminado ("Hartigan-Wong"): si es positivo (o verdadero), se genera información de rastreo sobre el progreso del algoritmo. Los valores más altos pueden producir más información de rastreo.
+  
+  Entre otros.
+   
+  ###  fviz_cluster
+  
+  Para representar graficamente K-means podemos usar la funcion fviz_cluster() incorporada en la libreria "factoextra".
+  
+  Proporciona una visualización elegante basada en ggplot2 de métodos de partición, incluido kmeans [paquete de estadísticas]; pam, clara y fanny [paquete de clúster]; dbscan [paquete fpc]; Mclust [paquete mclust]; HCPC [FactoMineR]; hkmeans [factoextra]. 
+  
+  
+  
+  ```R 
+  fviz_cluster(object, data = NULL, choose.vars = NULL, stand = TRUE, axes = c(1, 2), 
+  geom = c("point", "text"), repel = FALSE, show.clust.cent = TRUE, ellipse = TRUE, 
+  ellipse.type = "convex", ellipse.level = 0.95, ellipse.alpha = 0.2, shape = NULL,
+  pointsize = 1.5, labelsize = 12, main = "Cluster plot", xlab = NULL, ylab = NULL, 
+  outlier.color = "black", outlier.shape = 19, ggtheme = theme_grey(), ...)
+  
+  ```
+  
+  Algunos de sus argumentos son:
+  
+  - object: n objeto de clase "partición" creado por las funciones pam (), clara () o fanny () en el paquete de clúster; "kmeans"
+  - data: Los datos que se han utilizado para la agrupación. Se requiere solo cuando el objeto es una clase de kmeans o dbscan.
+  - stand: valor lógico si es VERDADERO, los datos se estandarizan antes del análisis del componente principal.
+  - labelsize: tamaño de fuente para las etiquetas
+  - main: titulo de la grafica
+  
+  
+  ejemplo de uso:
+  ```R 
+  # K-means clustering
+  # +++++++++++++++++++++
+  km.res <- kmeans(iris.scaled, 3, nstart = 10)
+  
+  # Visualize kmeans clustering
+  # use repel = TRUE to avoid overplotting
+  fviz_cluster(km.res, iris[, -5], ellipse.type = "norm")
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

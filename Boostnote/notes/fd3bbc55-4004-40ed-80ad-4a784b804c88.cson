@@ -1,0 +1,119 @@
+createdAt: "2019-09-17T14:25:35.040Z"
+updatedAt: "2019-09-17T14:26:46.140Z"
+type: "MARKDOWN_NOTE"
+folder: "9a7367601b9b14252c12"
+title: "\"11 Hierarchical Clustering\""
+tags: []
+content: '''
+  ---
+  title: "11 Hierarchical Clustering"
+    author: "Adolfo"
+    date: "16/9/2019"
+    output: html_document
+  ---
+    
+    # Hierarchical Clustering
+    
+    **Contenidos**
+    <!-- toc -->
+  
+  - [Introduccion](#Introduccion)
+    * [dist()](#dist)
+    * [Dendrogram - hclust ()](#Dendrogram---hclust-)
+    * [plot.dendrogram() function](#plotdendrogram-function)
+      + [phylo](#phylo)
+  
+  <!-- tocstop -->
+     ## Introduccion 
+    En esta seccion se intentara abordar la agrupacion jerarquica, en el tratamiento de datos multidimensionales con el objetivo de identificar patrones de comportamiento de los datos. Esta idea es intuitiva, consiste en agrupar datos segun la distancia que exista entre ellos. Sin embargo, en detetminada agrupacion no pueden existir puntos muy lejanos unos de otros.
+    
+    
+    Existen varias formas de realizar agrupaciones en R entre ellas:
+    
+    - Método divisivo
+    - Método aglomerativo
+    - Algoritmo HAC 
+    - Enlace completo v
+    - Enlace promedio 
+    - El método de Ward
+    
+   ###  dist()
+    
+   Estas funciones calculan y devuelven la matriz de distancia automática / similitud entre filas o columnas de una matriz / marco de datos, o una lista, así como la matriz de distancia cruzada entre dos matrices / marcos de datos / listas
+   
+    
+    ```R
+    #definicion
+  dist(x, y = NULL, method = NULL, ..., diag = FALSE, upper = FALSE,
+       pairwise = FALSE, by_rows = TRUE, convert_similarities = TRUE,
+       auto_convert_data_frames = TRUE)
+       
+  #lo mas utilizado
+       dist(x)
+  ```
+  - x: es una matriz numérica, marco de datos u objeto "dist".
+  
+   ###  Dendrogram - hclust ()
+   
+  R proporciona una función simple a la que puede llamar para la creacion de un dendograma. Se llama hclust () y toma como argumento la matriz de distancia por pares que vimos anteriormente.
+  
+   ```R
+   
+  hclust(d, method = "complete", members = NULL)
+  
+  # S3 method for hclust
+  plot(x, labels = NULL, hang = 0.1, check = TRUE,
+       axes = TRUE, frame.plot = FALSE, ann = TRUE,
+       main = "Cluster Dendrogram",
+       sub = NULL, xlab = NULL, ylab = "Height", …)
+  ```
+  
+   ### plot.dendrogram() function
+  
+  Para visualizar el resultado de un análisis de agrupamiento jerárquico usando la función plot.dendrogram (), primero debemos convertirlo como un dendrograma.
+  
+    ```R
+  plot(x, type = c("rectangle", "triangle"), horiz = FALSE)
+  # x: an object of class dendrogram
+  # type of plot. Possible values are “rectangle” or “triangle”
+  # horiz: logical indicating if the dendrogram should be drawn 3horizontally or no
+  
+  # Convert hclust into a dendrogram and plot
+  hcd <- as.dendrogram(hc)
+  # Default plot
+  plot(hcd, type = "rectangle", ylab = "Height")
+  
+  ```
+  
+  Igualmente estas funciones tienes opciones de personalización como el colores, si se queire el dendrogram de manera horizontal, etc
+  
+    ```R
+   # Horizontal plot
+  plot(hcd,  xlab = "Height",
+       nodePar = nodePar, horiz = TRUE)
+       
+    # Change edge color
+  plot(hcd,  xlab = "Height", nodePar = nodePar, 
+       edgePar = list(col = 2:3, lwd = 2:1))   
+       
+    ```
+  #### phylo
+  Tambien en R existe un paquete llamado "Ape", el paquete Ape (Análisis de Filogenética y Evolución) se puede utilizar para producir un dendrograma más sofisticado. La función plot.phylo () se puede usar para trazar un dendrograma, estos son un dendrogram mas sofisticado el cual puede graficarse de distintas formas, arbol, radial,etc.
+  
+  ```R
+   #S3 method for hclust
+  as.phylo(x, ...)
+  
+  # Radial
+  plot(as.phylo(hc), type = "radial")
+  
+  # Unrooted
+  plot(as.phylo(hc), type = "unrooted", cex = 0.6,
+       no.margin = TRUE)
+  
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
